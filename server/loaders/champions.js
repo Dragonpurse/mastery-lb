@@ -5,7 +5,7 @@ var key = Meteor.settings.riot.key;
 
 export default function () {
     //Champions.insert(champion);
-    HTTP.get(server + '/api/lol/static-data/euw/v1.2/champion',{
+    HTTP.get('https://na.' + server + '/api/lol/static-data/euw/v1.2/champion',{
         params: {
             "api_key": key
         }
