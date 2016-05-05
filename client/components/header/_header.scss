@@ -1,6 +1,18 @@
 nav.header{
-  // background-color: black;
+  background-color: $blue-grey;
+  border: none;
+  border-radius: 0px;
   
+  #region-btn {
+    text-transform: uppercase;
+  }
+
+  .region-group-btn {
+    li {
+      padding-left: 10px;
+    }
+  }
+
   select{
     background-color: white;
   }

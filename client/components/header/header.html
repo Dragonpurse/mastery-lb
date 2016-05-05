@@ -5,23 +5,71 @@
             <li>Region: {{slug}}</li>
         {{/each}}
     </ul> -->
-  <nav class="header">
-    <div class="nav-wrapper">
-      <!-- <a href="#" class="brand-logo">Logo</a> -->
+  <nav class="header navbar navbar-default">
+    <div class="container-fluid">
       <div class="row">
-        <div class="input-field col s1 offset-s7">
+        <div class="col-lg-6">
+          <div class="input-group">
+            <div class="input-group-btn region-group-btn">
+              <input type='button' value={{selectedRegion.slug}} id='region-btn' class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <ul class="dropdown-menu">
+                {{#each regions}}
+                    <li data-slug="{{slug}}" class="region">{{name}}</li>
+                {{/each}}
+              </ul>
+            </div><!-- /btn-group -->
+            <input type="text" class="form-control" aria-label="...">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Go!</button>
+            </span>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+      </div>
+<!--       <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Brand</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Summoner name">
+          </div>
+          <button type="submit" class="btn btn-default">Search</button>
+        </form>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div> -->
+      <!-- <a href="#" class="brand-logo">Logo</a> -->
+<!--       <div class="row">
+        <div class="input-field col s4 offset-s7">
           <select>
             <option value="" disabled selected>Region</option>
             <option value="1">Option 1</option>
             <option value="2">Option 2</option>
             <option value="3">Option 3</option>
           </select>
-        </div>
-        <div class="input-field col s2">
           <input id="icon_prefix" type="text" class="validate">
           <label for="icon_prefix">Summoner name</label>
         </div>
-      </div>
+
+      </div> -->
     </div>
   </nav>
 <!--     <div class="center aligned {{isActive}} header-wrapper">

@@ -13,7 +13,9 @@ export default function (Template) {
 
   Template.header.rendered = function () {
     $(document).ready(function() {
-      $('select').material_select();
+      $('ul.dropdown-menu li').click(function(e) {
+        $('#region-btn').attr('value', $(this).data('slug'));
+      });
     });
   }
 
@@ -28,7 +30,16 @@ export default function (Template) {
   Template.header.helpers({
     regions() {
       return Regions.find();
+    },
+    selectedRegion() {
+      return Regions.findOne();
     }
+  })
+
+  Template.header.events({
+    // 'selectedRegion'(region){
+    //   selectedRegion = region;
+    // }
   })
 
 }
