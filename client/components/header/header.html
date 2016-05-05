@@ -1,8 +1,54 @@
 <template name="header">
     
-    <ul>
+<!--     <ul>
         {{#each regions}}
             <li>Region: {{slug}}</li>
         {{/each}}
-    </ul>
+    </ul> -->
+  <nav class="header">
+    <div class="nav-wrapper">
+      <!-- <a href="#" class="brand-logo">Logo</a> -->
+      <div class="row">
+        <div class="input-field col s1 offset-s7">
+          <select>
+            <option value="" disabled selected>Region</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+        </div>
+        <div class="input-field col s2">
+          <input id="icon_prefix" type="text" class="validate">
+          <label for="icon_prefix">Summoner name</label>
+        </div>
+      </div>
+    </div>
+  </nav>
+<!--     <div class="center aligned {{isActive}} header-wrapper">
+        <h1 class="huge center aligned main ui header">
+            {{constant 'name'}}
+            <div class="sub header">
+                by <a class="unstyled link" href="http://matteodem.github.io/meteor-boilerplate">@matteodem</a>
+            </div>
+        </h1>
+        <button class="basic ui resize icon button"><i class="{{iconClass}} icon"></i></button>
+
+        {{#if showLogin}}
+        <div class="login-wrapper {{animateClass}} animated">
+            {{#if currentUser}}
+            <div class="actions-wrapper">
+                {{#if currentUser.username}}
+                <div class="hello">Hi {{currentUser.username}}!</div>
+                {{/if}}
+                <div class="ui fluid purple log-out button">
+                    <i class="sign out icon"></i>
+                    Log out
+                </div>
+            </div>
+            {{else}}
+            {{> atForm }}
+            {{/if}}
+        </div>
+        {{/if}}
+    </div> -->
 </template>

@@ -4,6 +4,7 @@ export default function () {
   FlowRouter.route('/', {
     action: () => renderBasic('home')
   });
+  
   FlowRouter.route('/summoner', {
     action: () => renderBasic('stats')
   });

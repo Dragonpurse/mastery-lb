@@ -41,6 +41,7 @@ email@1.0.12
 es5-shim@4.5.10
 fastclick@1.0.11
 flemay:less-autoprefixer@1.2.0
+fourseven:scss@3.4.3
 geojson-utils@1.0.8
 hot-code-push@1.0.4
 html-tools@1.0.9
@@ -56,6 +57,7 @@ less@2.6.0
 livedata@1.0.18
 localstorage@1.0.9
 logging@1.0.12
+materialize:materialize@0.97.5
 mdg:validation-error@0.2.0
 meteor@1.1.14
 meteor-base@1.0.4
@@ -87,6 +89,7 @@ reactive-var@1.0.9
 reload@1.1.8
 retry@1.0.7
 routepolicy@1.0.10
+seba:minifiers-autoprefixer@1.0.1
 semantic:ui-css@1.12.3
 service-configuration@1.0.9
 session@1.1.5
@@ -96,7 +99,6 @@ softwarerero:accounts-t9n@1.3.3
 spacebars@1.0.11
 spacebars-compiler@1.0.11
 srp@1.0.8
-standard-minifier-css@1.0.6
 standard-minifier-js@1.0.6
 templating@1.1.9
 templating-tools@1.0.4
