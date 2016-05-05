@@ -11,6 +11,10 @@ nav.header{
     li {
       padding-left: 10px;
     }
+
+    li:hover{
+      background-color: $background-main;
+    }
   }
 
   select{
