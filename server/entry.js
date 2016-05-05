@@ -1,10 +1,9 @@
 import setupBrowserPolicy from './config/security.js';
-import loadFixtures from './loaders/fixtures.js';
-import loadUsers from './loaders/users.js';
+import loadChampions from './loaders/champions.js';
 
 setupBrowserPolicy(BrowserPolicy);
 
 Meteor.startup(() => {
-  loadUsers();
+  loadChampions();
   //loadFixtures([{ foo: 'bar' }], myCollection);
 });
