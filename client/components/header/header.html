@@ -14,7 +14,7 @@
               <input type='button' value={{selectedRegion.slug}} id='region-btn' class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <ul class="dropdown-menu">
                 {{#each regions}}
-                    <li data-slug="{{slug}}" class="region">{{name}}</li>
+                    {{>region}}
                 {{/each}}
               </ul>
             </div><!-- /btn-group -->
