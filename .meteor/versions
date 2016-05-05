@@ -57,7 +57,6 @@ less@2.6.0
 livedata@1.0.18
 localstorage@1.0.9
 logging@1.0.12
-materialize:materialize@0.97.5
 mdg:validation-error@0.2.0
 meteor@1.1.14
 meteor-base@1.0.4
@@ -103,6 +102,7 @@ standard-minifier-js@1.0.6
 templating@1.1.9
 templating-tools@1.0.4
 tracker@1.0.13
+twbs:bootstrap@3.3.6
 ui@1.0.11
 underscore@1.0.8
 url@1.0.9

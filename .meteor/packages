@@ -46,4 +46,4 @@ standard-minifier-js
 simple:dev-error-overlay
 seba:minifiers-autoprefixer
 fourseven:scss
-materialize:materialize
+twbs:bootstrap
