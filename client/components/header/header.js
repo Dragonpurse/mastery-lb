@@ -14,7 +14,7 @@ export default function (Template) {
   Template.header.rendered = function () {
     $(document).ready(function() {
       $('ul.dropdown-menu li').click(function(e) {
-        $('#region-btn').attr('value', $(this).data('slug'));
+        $('#region-btn').prop('value', $(this).data('slug'));
       });
     });
   }
