@@ -7,3 +7,4 @@ export function renderBasic(template) {
 export function renderSlim(template) {
   return BlazeLayout.render('basicLayout', { content: template });
 }
+

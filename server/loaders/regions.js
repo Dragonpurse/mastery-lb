@@ -10,7 +10,6 @@ export default function () {
         var regions = data.data;
 
         regions.forEach(function(region){
-            console.log('region:' + region.slug);
             var existingRegion = Regions.findOne({slug:region.slug});
             if(!existingRegion){
                 Regions.insert(region);
