@@ -17,7 +17,7 @@ export const getSummonerByName = function(region, summonerName){
             var riotData = data.data[summonerName];
             var doesHeAlreadyExist = Summoners.findOne({'data.id': riotData.id});
             if(doesHeAlreadyExist){
-                next(null, doesHeAlreadyExist);
+                return doesHeAlreadyExist;
             }
             var summoner = {
                 data: riotData,
