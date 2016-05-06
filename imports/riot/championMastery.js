@@ -26,7 +26,6 @@ export const updateChampionMasteries = function(region, summonerId){
                         console.log('updating');
 
                     }else{
-                        console.log('Inserting');
                         var mastery = {
                             region: region.slug,
                             data: championMastery
