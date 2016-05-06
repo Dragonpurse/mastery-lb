@@ -1,7 +1,6 @@
 
 import { ChampionMastery } from '../../../imports/api/championMastery.js';
 import { Champions } from '../../../imports/api/champion.js';
-
 export default function (Template) {
 
   var region, summonerId;
@@ -16,10 +15,7 @@ export default function (Template) {
 
   Template.summoner.helpers({
     stats() {
-      return ChampionMastery.find({});
-    },
-    champions() {
-      return Champions.find({},{sort:{name: 1}});
+      return ChampionMastery.find({},{sort:{"data.championPoints": -1}});
     }
   })
 }

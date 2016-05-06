@@ -1,6 +1,13 @@
 export const ChampionMastery = new Mongo.Collection('championMastery');
 import {updateChampionMasteries} from '../riot/championMastery';
+import {Champions} from './champion';
 import {Regions} from './region.js';
+
+ChampionMastery.helpers({
+    champion: function(){
+        return Champions.findOne({id:this.data.championId});
+    }
+});
 if (Meteor.isServer) {
     // This code only runs on the server
     Meteor.publish('SummonerChampionMastery', function (region, summonerId) {
