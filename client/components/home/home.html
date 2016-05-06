@@ -1,9 +1,8 @@
 <template name="home">
   <div class="container">
     <div class="background center-block fill top-wrapper">
-      <div class="form-group">
-        <label for="usr">Name:</label>
-        <input type="text" class="form-control" id="champion-search">
+      <div class="form-group search-bar">
+        <input type="text" class="form-control" id="champion-search" placeholder="Search for a champion">
       </div>
       <ul class="champions">
           {{#each champions}}
