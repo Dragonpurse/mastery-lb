@@ -1,5 +1,5 @@
 import { Regions } from '../../../imports/api/region.js';
-import { Summoners } from '../../../imports/api/summoner.js';
+
 import  './region.js';
 
 export default function (Template) {
@@ -39,9 +39,8 @@ export default function (Template) {
             console.log(error);
           }
           if(result){
-            window.location.href = '/summoner/' + result.region + '/' + result.data.id;
+            window.location.href = '/summoner/' + result.region + '/' + result.id;
           }
-          console.log(result);
         }
       );
     }

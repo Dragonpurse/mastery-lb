@@ -3,6 +3,14 @@ import {getSummonerByName} from '../riot/summoner.js';
 
 if(Meteor.isServer){
     var Future = Npm.require('fibers/future');
+
+    Meteor.publish('summoners', function (summonerId) {
+        check(summonerId, Number);
+        return Summoners.find({
+            id: summonerId
+        });
+    });
+
     Meteor.methods({
         'summoner.search'(region, summonerName) {
 
@@ -14,7 +22,7 @@ if(Meteor.isServer){
             var summoner = Summoners.findOne(
                 {
                     region: region.slug,
-                    'data.name': {$regex: summonerName,  $options: 'i'}
+                    'name': {$regex: summonerName,  $options: 'i'}
                 });
             if (summoner) {
                 return summoner;
