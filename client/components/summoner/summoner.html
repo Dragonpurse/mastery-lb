@@ -25,7 +25,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            {{#each stats}}
+              {{> champion_summoner_overview}}
+            {{/each}}
+<!--             <tr>
               <td>John</td>
               <td>Doe</td>
               <td>Doe</td>
@@ -58,7 +61,7 @@
               <td>July</td>
               <td>Dooley</td>
               <td>july@example.com</td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
       </div>

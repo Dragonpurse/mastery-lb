@@ -1,0 +1,20 @@
+<template name="champion_summoner_overview">
+  <tr>
+    <td>{{ data.championId }}</td>
+    <td>{{ data.championLevel }}</td>
+    <td>
+    {{#if data.highestGrade}}
+      {{ data.highestGrade }}
+    {{/if}}
+    </td>
+    <td>{{ data.chestGranted }}</td>
+    <td>
+      <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ calculateProgress data.championLevel data.championPointsSinceLastLevel data.championPointsUntilNextLevel }}"
+        aria-valuemin="0" aria-valuemax="100" style="width:{{ calculateProgress data.championLevel data.championPointsSinceLastLevel data.championPointsUntilNextLevel }}%">
+          {{ calculateProgress data.championLevel data.championPointsSinceLastLevel data.championPointsUntilNextLevel }} 
+        </div>
+      </div>
+    </td>
+  </tr>
+</template>
