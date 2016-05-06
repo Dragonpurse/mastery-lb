@@ -3,15 +3,7 @@
     <div class="background center-block fill top-wrapper">
       <ul class="champions">
           {{#each champions}}
-              <li>
-                  <div class="champion-icon">
-                      <div class="sq-left"></div>
-                      <div class="sq-right"></div>
-                      <div class="champion-border"></div>
-                      <div class="champion-border-border"></div>
-                      <img src="{{ddragonUrl}}/cdn/6.9.1/img/champion/{{key}}.png"/>
-                  </div>
-              </li>
+            {{> champion }}
           {{/each}}
       </ul>
     </div>
