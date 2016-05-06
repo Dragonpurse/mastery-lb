@@ -1,6 +1,10 @@
 <template name="home">
   <div class="container">
     <div class="background center-block fill top-wrapper">
+      <div class="form-group">
+        <label for="usr">Name:</label>
+        <input type="text" class="form-control" id="champion-search">
+      </div>
       <ul class="champions">
           {{#each champions}}
             {{> champion }}
