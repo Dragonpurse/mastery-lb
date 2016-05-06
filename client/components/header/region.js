@@ -3,7 +3,7 @@ import { Template } from 'meteor/templating';
 
 Template.region.events({
     'click .region'() {
-        Session.set( "selectedRegion", this);
+        Session.setPersistent( "selectedRegion", this);
     }
 });
 

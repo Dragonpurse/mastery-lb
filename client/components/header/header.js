@@ -1,6 +1,7 @@
 import { Regions } from '../../../imports/api/region.js';
 import { Summoners } from '../../../imports/api/summoner.js';
 import  './region.js';
+
 export default function (Template) {
 
   var selectedRegion;
@@ -23,7 +24,6 @@ export default function (Template) {
       }
       return selectedRegion;
     }
-
   });
 
   Template.header.events({

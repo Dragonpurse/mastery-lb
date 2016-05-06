@@ -47,3 +47,4 @@ simple:dev-error-overlay
 seba:minifiers-autoprefixer
 fourseven:scss
 twbs:bootstrap
+u2622:persistent-session

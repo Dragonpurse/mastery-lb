@@ -6,14 +6,10 @@ if (Meteor.isServer) {
     Meteor.publish('SummonerChampionMastery', function (region, summonerId) {
         check(region, String);
         check(summonerId, Number);
-
-        console.log(summonerId);
-        console.log(region);
         var masteries = ChampionMastery.find({
             "data.playerId": summonerId,
             region: region
         });
-        console.log(masteries.count());
         if(masteries.count() == 0){
             var regionObject = Regions.findOne({slug:region});
             updateChampionMasteries(regionObject,summonerId);

@@ -29,11 +29,9 @@ if(Meteor.isServer){
                     }
                 })
             }
-
             return future.wait();
         }
     });
-
 }
 
 
