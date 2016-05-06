@@ -31,3 +31,11 @@ body {
 
   background: transparent url("/images/frame-sprite.png") no-repeat 50% -148px;
 }
+
+.bottom-wrapper {
+  width: 100%;
+  position: relative;
+  background: transparent url("/images/frame-sprite.png") no-repeat 50% -284px;
+  left: 0;
+  height: 130px;
+}

@@ -2,13 +2,15 @@
   <div class="container">
     <div class="background center-block fill top-wrapper">
       <div class="form-group search-bar">
-        <input type="text" class="form-control" id="champion-search" placeholder="Search for a champion">
+        <input type="text" class="form-control" id="champion-search" placeholder="Lookup champion">
       </div>
       <ul class="champions">
           {{#each champions}}
             {{> champion }}
           {{/each}}
       </ul>
+    </div>
+    <div class="bottom-wrapper">
     </div>
   </div>
 </template>

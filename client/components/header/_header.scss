@@ -2,6 +2,12 @@ nav.header{
   background-color: $blue-grey;
   border: none;
   border-radius: 0px;
+
+  .row {
+    height: 50px;
+    display: table-cell;
+    vertical-align: middle;
+  }
   
   #region-btn {
     text-transform: uppercase;
@@ -20,5 +26,4 @@ nav.header{
   select{
     background-color: white;
   }
-
 }
