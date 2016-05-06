@@ -16,9 +16,7 @@ Meteor.methods({
         if (summoner) {
             return summoner;
         } else {
-            getSummonerByName(region, summonerName, function(error, summoner){
-
-            })
+            return getSummonerByName(region, summonerName)
         }
     }
 });

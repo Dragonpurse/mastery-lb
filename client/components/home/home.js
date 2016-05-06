@@ -11,9 +11,6 @@ export default function (Template) {
   Template.home.helpers({
     champions() {
       return Champions.find({},{sort:{name: 1}});
-    },
-    ddragonUrl(){
-      return ddragonUrl;
     }
   })
 

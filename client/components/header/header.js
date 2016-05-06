@@ -15,7 +15,7 @@ export default function (Template) {
       return Regions.find();
     },
     selectedRegion() {
-      selectedRegion = Session.get( "selectedRegion" );
+      selectedRegion = Session.get("selectedRegion");
       if(selectedRegion){
         return selectedRegion;
       }else{
@@ -38,8 +38,12 @@ export default function (Template) {
           if(error){
             console.log(error);
           }
+          if(result){
+            window.location.href = '/summoner/' + result.region + '/' + result.data.id;
+          }
           console.log(result);
-      } );
+        }
+      );
     }
   });
 
