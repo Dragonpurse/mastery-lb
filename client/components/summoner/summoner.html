@@ -1,18 +1,19 @@
 <template name="summoner">
     <div class="background center-block fill top-wrapper">
     </div>
-
     <div class="container background">
       <div class="content">
-        <h2>{{summoner.name}}</h2>
-        <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>            
-        <table class="table">
+        <h2><span class="icon-summoner"> <img src="{{ddragonUrl}}/cdn/6.9.1/img/profileicon/{{summoner.profileIconId}}.png"/></span>{{summoner.name}} - Lv{{summoner.summonerLevel}} summoner - <span class="region-summoner">{{summoner.region}}</span></h2>
+        <div class="form-group search-bar" id="search-bar-summoner">
+          <input type="text" class="form-control" id="champion-search" placeholder="Lookup champion">
+        </div>
+        <table class="table summoner-info">
           <thead>
             <tr>
-              <th>Icon</th>
-              <th>Champion level</th>
+              <th>Champion</th>
+              <th>Mastery level</th>
               <th>Highest grade</th>
-              <th>Chest</th>
+              <th>Chest<input type="checkbox" id="hide-redeemed" title="Hide redeemed chests"></th>
               <th>Pts until next level</th>
             </tr>
           </thead>
@@ -20,7 +21,6 @@
             {{#each stats}}
               {{> champion_summoner_overview}}
             {{/each}}
-
           </tbody>
         </table>
       </div>

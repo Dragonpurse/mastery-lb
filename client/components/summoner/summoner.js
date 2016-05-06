@@ -9,11 +9,24 @@ export default function (Template) {
     region = FlowRouter.getParam("region");
     summonerId = parseInt(FlowRouter.getParam("summonerId"));
     Meteor.subscribe('regions');
-    Meteor.subscribe('SummonerChampionMastery', region , summonerId);
     //To load champion details
-    Meteor.subscribe('champions', '');
     Meteor.subscribe('summoners', summonerId);
+    Meteor.subscribe("champions", '');
+    Session.set('championSearch', '');
+    Tracker.autorun(function () {
+       Meteor.subscribe('SummonerChampionMastery', region , summonerId, Session.get('championSearch'));
+    });
   });
+
+  Template.summoner.events({
+    'keyup #champion-search'(event){
+      Session.set('championSearch', event.target.value);
+    },
+    'click #hide-redeemed'(event){
+      // console.log(event.target.checked);
+      // Session.set('championSearch', event.target.value);
+    }
+  })
 
   Template.summoner.helpers({
     stats() {

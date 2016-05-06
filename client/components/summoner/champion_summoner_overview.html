@@ -7,7 +7,14 @@
       {{ data.highestGrade }}
     {{/if}}
     </td>
-    <td>{{ data.chestGranted }}</td>
+    <td>
+    {{#if data.chestGranted }}
+      <img src="/images/chest-available.png" style="width:20px;height:20px;">
+    {{ else }}
+      <img src="/images/chest-unavailable.png" style="width:20px;height:20px;">
+    {{/if}}
+
+    </td>
     <td>
       <div class="progress">
         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ calculateProgress data.championLevel data.championPointsSinceLastLevel data.championPointsUntilNextLevel }}"
