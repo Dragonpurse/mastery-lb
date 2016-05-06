@@ -12,6 +12,7 @@ body {
   background-image: url("/images/frame-center.png");
   background-repeat: repeat-y;
   background-position: 50% 0;
+  width: 1000px;
 }
 
 .fill {
@@ -38,4 +39,9 @@ body {
   background: transparent url("/images/frame-sprite.png") no-repeat 50% -284px;
   left: 0;
   height: 130px;
+}
+
+.content {
+  padding-left: 15px;
+  padding-right: 15px;
 }
