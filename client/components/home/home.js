@@ -19,7 +19,6 @@ export default function (Template) {
 
   Template.home.events({
     'keyup #champion-search'(event){
-      console.log(event.target.value);
       Session.set('championSearch', event.target.value);
     }
   })

@@ -1,0 +1,28 @@
+<template name="leaderboard">
+    <div class="background center-block fill top-wrapper">
+    </div>
+
+    <div class="container background">
+        <div class="content">
+            <h2>LEADERBOARDS</h2>
+            <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Summoner name</th>
+                    <th>Score</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {{#each board}}
+                        {{>summonerLeaderboardOverview}}
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="bottom-wrapper">
+    </div>
+
+</template>

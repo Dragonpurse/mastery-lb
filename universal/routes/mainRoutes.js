@@ -8,6 +8,9 @@ export default function () {
   FlowRouter.route('/summoner/:region/:summonerId', {
     action: () => renderBasic('summoner')
   });
+  FlowRouter.route('/leaderboard/:championId', {
+    action: () => renderBasic('leaderboard')
+  });
 
   FlowRouter.notFound = {
     action: () => renderSlim('notFound')

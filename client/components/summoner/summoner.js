@@ -20,7 +20,6 @@ export default function (Template) {
       return ChampionMastery.find({},{sort:{"data.championPoints": -1}});
     },
     summoner(){
-      console.log('shit');
       return Summoners.findOne({});
     }
   })

@@ -4,6 +4,9 @@ import {getSummonerByName} from '../riot/summoner.js';
 if(Meteor.isServer){
     var Future = Npm.require('fibers/future');
 
+    Meteor.publish('allSummoners', function () {
+        return Summoners.find();
+    });
     Meteor.publish('summoners', function (summonerId) {
         check(summonerId, Number);
         return Summoners.find({
@@ -32,7 +35,6 @@ if(Meteor.isServer){
                         console.log(error);
                         future.return( error );
                     } else {
-                        console.log(summoner);
                         future.return( summoner );
                     }
                 })

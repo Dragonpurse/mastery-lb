@@ -1,11 +1,15 @@
 export const ChampionMastery = new Mongo.Collection('championMastery');
 import {updateChampionMasteries} from '../riot/championMastery';
 import {Champions} from './champion';
+import {Summoners} from './summoner';
 import {Regions} from './region.js';
 
 ChampionMastery.helpers({
     champion: function(){
         return Champions.findOne({id:this.data.championId});
+    },
+    summoner:function(){
+        return Summoners.findOne({id:this.data.playerId})
     }
 });
 if (Meteor.isServer) {
@@ -24,13 +28,20 @@ if (Meteor.isServer) {
         return masteries;
     });
 
-    Meteor.publish('ChampionLeaderBoards', function (region, championId) {
+    Meteor.publish('ChampionLeaderBoards', function (region, championId, size, offset) {
         check(region, String);
-        check(championId, String);
-        return ChampionMastery.find({
+        check(championId, Number);
+        check(size, Number);
+        check(offset, Number);
+
+        var champions= ChampionMastery.find({
             "data.championId": championId,
             region: region
+        }, {
+            limit : size,
+            offset: size * offset
         });
+        return champions
     });
 
 }
