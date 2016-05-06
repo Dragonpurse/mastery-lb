@@ -11,5 +11,8 @@ export default function (Template) {
       var totalPointsNextLevel = championPointsSinceLastLevel + championPointsUntilNextLevel;
       return Math.round(percentage + (championPointsSinceLastLevel / totalPointsNextLevel) * 100 / 5);
     },
+    calculateTotalExpLevel(championPointsSinceLastLevel, championPointsUntilNextLevel) {
+      return championPointsSinceLastLevel + championPointsUntilNextLevel;
+    },
   })
 }

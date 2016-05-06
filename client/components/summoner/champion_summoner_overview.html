@@ -12,7 +12,12 @@
       <div class="progress">
         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ calculateProgress data.championLevel data.championPointsSinceLastLevel data.championPointsUntilNextLevel }}"
         aria-valuemin="0" aria-valuemax="100" style="width:{{ calculateProgress data.championLevel data.championPointsSinceLastLevel data.championPointsUntilNextLevel }}%">
-          {{ calculateProgress data.championLevel data.championPointsSinceLastLevel data.championPointsUntilNextLevel }} 
+
+          {{#if data.championPointsUntilNextLevel }}
+            Lv{{ data.championLevel }} {{ data.championPointsSinceLastLevel }}/{{ calculateTotalExpLevel data.championPointsSinceLastLevel data.championPointsUntilNextLevel }}
+          {{else}}
+            Total points: {{ data.championPoints }}
+          {{/if}}
         </div>
       </div>
     </td>
