@@ -1,39 +1,46 @@
 export const ChampionMastery = new Mongo.Collection('championMastery');
-
+import {updateChampionMasteries} from '../riot/championMastery';
+import {Regions} from './region.js';
 if (Meteor.isServer) {
     // This code only runs on the server
     Meteor.publish('SummonerChampionMastery', function (region, summonerId) {
         check(region, String);
         check(summonerId, Number);
-        return ChampionMastery.find({
+
+        console.log(summonerId);
+        console.log(region);
+        var masteries = ChampionMastery.find({
             "data.playerId": summonerId,
             region: region
         });
-
+        console.log(masteries.count());
+        if(masteries.count() == 0){
+            var regionObject = Regions.findOne({slug:region});
+            updateChampionMasteries(regionObject,summonerId);
+        }
+        return masteries;
     });
 
     Meteor.publish('ChampionLeaderBoards', function (region, championId) {
         check(region, String);
-        check(championId, Number);
+        check(championId, String);
         return ChampionMastery.find({
             "data.championId": championId,
             region: region
         });
     });
+
 }
-
-
 Meteor.methods({
-    'updateSummonerStats'(region, summonerId) {
-        check(region, String);
-        check(summonerId, Number);
+    'updateSummonerStats'(regionSlug, summonerId) {
+        check(regionSlug, String);
+        check(summonerId, String);
+        if(Meteor.isServer){
+            var region = Regions.findOne({slug:regionSlug});
+            updateChampionMasteries(region,summonerId);
+        }
 
-
-        /*ChampionStats.insert({
-            text,
-            createdAt: new Date(),
-            owner: this.userId,
-            username: Meteor.users.findOne(this.userId).username,
-        });*/
     }
 });
+
+

@@ -2,18 +2,18 @@
 import { ChampionMastery } from '../../../imports/api/championMastery.js';
 export default function (Template) {
 
-
+    var region, summonerId;
 
     Template.summoner.onCreated(function () {
-        console.log('sub');
-        Meteor.subscribe('SummonerChampionMastery', FlowRouter.getParam("region"), FlowRouter.getParam("summonerId"));
+        region = FlowRouter.getParam("region");
+        summonerId = parseInt(FlowRouter.getParam("summonerId"));
+        Meteor.subscribe('regions');
+        Meteor.subscribe('SummonerChampionMastery', region , summonerId);
     });
 
     Template.summoner.helpers({
         stats() {
-            var stats = ChampionMastery.find();
-            console.log(stats);
-            return stats;
+            return ChampionMastery.find({});
         }
     })
 

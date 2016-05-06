@@ -12,6 +12,7 @@ export default function () {
         regions.forEach(function(region){
             var existingRegion = Regions.findOne({slug:region.slug});
             if(!existingRegion){
+                region.regionId = region.hostname.split('.')[1];
                 Regions.insert(region);
             }
         })

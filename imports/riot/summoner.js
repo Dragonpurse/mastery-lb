@@ -1,12 +1,12 @@
 import { HTTP } from 'meteor/http';
 import {Summoners} from '../api/summoner.js'
-if (Meteor.isServer) {
-    server = Meteor.settings.riot.apiserver;
-    key = Meteor.settings.riot.key;
-}
+
+
 
 export const getSummonerByName = function(region, summonerName){
     if(Meteor.isServer){
+        const server = Meteor.settings.riot.apiserver;
+        const key = Meteor.settings.riot.key;
         try {
             var data = HTTP.get('https://' + region.slug + '.' + server + '/api/lol/' + region.slug + '/v1.4/summoner/by-name/' + summonerName, {
                 params: {
