@@ -1,6 +1,6 @@
 import { ChampionMastery } from '../../../imports/api/championMastery.js';
 import { Champions } from '../../../imports/api/champion.js';
-import { Champions } from '../../../imports/api/summoner';
+import { Summoners } from '../../../imports/api/summoner';
 export default function (Template) {
     let masteryHandler1, masteryHandler2;
 
@@ -57,11 +57,18 @@ export default function (Template) {
             })
         },
         summoner1(){
-            let summoner = Session.get('summoner2');
-            S
+            let summoner = Session.get('summoner1');
+            return Summoners.findOne({
+                id: summoner.id,
+                region: summoner.region
+            })
         },
         summoner2(){
-            let summoner = Session.get('summoner1');
+            let summoner = Session.get('summoner2');
+            return Summoners.findOne({
+                id: summoner.id,
+                region: summoner.region
+            })
         }
     });
 
