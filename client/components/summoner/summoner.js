@@ -13,8 +13,9 @@ export default function (Template) {
     Meteor.subscribe('summoners', summonerId);
     Meteor.subscribe("champions", '');
     Session.set('championSearch', '');
+    Session.set('chestGranted', false);
     Tracker.autorun(function () {
-       Meteor.subscribe('SummonerChampionMastery', region , summonerId, Session.get('championSearch'));
+       Meteor.subscribe('SummonerChampionMastery', region , summonerId, Session.get('championSearch'), Session.get('chestGranted'));
     });
   });
 
@@ -23,8 +24,7 @@ export default function (Template) {
       Session.set('championSearch', event.target.value);
     },
     'click #hide-redeemed'(event){
-      // console.log(event.target.checked);
-      // Session.set('championSearch', event.target.value);
+      Session.set('chestGranted', event.target.checked);
     }
   })
 

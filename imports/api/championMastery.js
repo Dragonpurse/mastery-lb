@@ -14,10 +14,11 @@ ChampionMastery.helpers({
 });
 if (Meteor.isServer) {
     // This code only runs on the server
-    Meteor.publish('SummonerChampionMastery', function (region, summonerId, searchQuery) {
+    Meteor.publish('SummonerChampionMastery', function (region, summonerId, searchQuery, chestGranted) {
         check(region, String);
         check(summonerId, Number);
         check(searchQuery, String);
+        check(chestGranted, Boolean);
 
         var champions;
         if (searchQuery && searchQuery.length > 1) {
@@ -30,11 +31,21 @@ if (Meteor.isServer) {
 
         var championIds = champions.map(function(p) { return p.id });
 
-        var masteries = ChampionMastery.find({
-            "data.playerId": summonerId,
-            'data.championId': {$in: championIds},
-            region: region,
-        });
+        if (!chestGranted) {
+            var masteries = ChampionMastery.find({
+                "data.playerId": summonerId,
+                'data.championId': {$in: championIds},
+                region: region,
+            });
+        } else {
+            var masteries = ChampionMastery.find({
+                "data.playerId": summonerId,
+                'data.championId': {$in: championIds},
+                'data.chestGranted': chestGranted,
+                region: region,
+            });
+        }
+
         if(masteries.count() == 0 && searchQuery.length == 0){
             var regionObject = Regions.findOne({slug:region});
             updateChampionMasteries(regionObject,summonerId);
