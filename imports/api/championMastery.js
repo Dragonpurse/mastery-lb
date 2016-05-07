@@ -31,19 +31,19 @@ if (Meteor.isServer) {
         }
 
         var championIds = champions.map(function(p) { return p.id });
-
+        let masteries;
         if (!chestGranted) {
-            var masteries = ChampionMastery.find({
+            masteries = ChampionMastery.find({
                 "data.playerId": summonerId,
                 'data.championId': {$in: championIds},
-                region: region,
+                region: region
             });
         } else {
-            var masteries = ChampionMastery.find({
+            masteries = ChampionMastery.find({
                 "data.playerId": summonerId,
                 'data.championId': {$in: championIds},
                 'data.chestGranted': chestGranted,
-                region: region,
+                region: region
             });
         }
 

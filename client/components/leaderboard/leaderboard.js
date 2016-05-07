@@ -77,27 +77,25 @@ export default function (Template) {
                 return [];
             }
         },
-        next(){
+        summonerCount(){
+            return Counts.findOne({ type: 'leaderboard' })
+        },
+        next(summonerCount){
+            console.log(summonerCount);
             let championId = parseInt(FlowRouter.getParam("championId"));
-            let count = Counts.findOne({ type: 'leaderboard' });
             let pageSize = Session.get('pageSize');
-            if(count) {
-                let page =Session.get('page');
-                let pageCount = Math.ceil(count.summonerCount / pageSize);
-                if(page+1 < pageCount){
-                    return getUrl(page+1,championId);
-                }
+            let page =Session.get('page');
+            let pageCount = Math.ceil(summonerCount / pageSize);
+            if(page+1 < pageCount){
+                return getUrl(page+1,championId);
             }
 
         },
         prev(){
             let championId = parseInt(FlowRouter.getParam("championId"));
-            let count = Counts.findOne({ type: 'leaderboard' });
-            if(count) {
-                let page =Session.get('page');
-                if(page != 0){
-                    return getUrl(page-1,championId);
-                }
+            let page =Session.get('page');
+            if(page != 0){
+                return getUrl(page-1,championId);
             }
         },
         position(index){

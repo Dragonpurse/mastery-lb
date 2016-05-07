@@ -35,7 +35,5 @@ export const updateChampionMasteries = function(region, summonerId){
                 })
             }
         });
-
-
     }
 };

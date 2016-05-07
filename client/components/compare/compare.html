@@ -1,2 +1,32 @@
 <template name="compare">
+    <div class="background center-block fill top-wrapper">
+    </div>
+    <div class="container background">
+        <div class="content">
+            <table class="table summoner-info">
+                <thead>
+                <tr>
+                    <th>Champion</th>
+                    <th>Points </th>
+                    <th>Points</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each champions}}
+                    {{#if hasChampion}}
+                        <tr>
+                            <td>{{name}}</td>
+
+                            <td>{{masteriesSummoner1.data.championPoints}}</td>
+                            <td>{{masteriesSummoner2.data.championPoints}}</td>
+                        </tr>
+                    {{/if}}
+
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="bottom-wrapper">
+    </div>
 </template>
