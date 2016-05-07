@@ -48,3 +48,4 @@ seba:minifiers-autoprefixer
 fourseven:scss
 twbs:bootstrap
 u2622:persistent-session
+momentjs:moment

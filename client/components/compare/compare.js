@@ -73,6 +73,7 @@ export default function (Template) {
     });
 
     Template.compare.onDestroyed(function(){
-        masteryHandler.stop();
+        masteryHandler1.stop();
+        masteryHandler2.stop();
     })
 }

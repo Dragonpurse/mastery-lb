@@ -17,7 +17,7 @@ export default function (Template) {
     Session.set('championSearch', '');
     Session.set('chestGranted', false);
     Tracker.autorun(function () {
-       masteryHandler = Meteor.subscribe('SummonerChampionMastery', region , summonerId, Session.get('championSearch'), Session.get('chestGranted'));
+      masteryHandler = Meteor.subscribe('SummonerChampionMastery', region , summonerId, Session.get('championSearch'), Session.get('chestGranted'));
     });
   });
 
@@ -30,6 +30,11 @@ export default function (Template) {
     },
     'click .region'() {
       Session.set( "selectedCompareRegion", this);
+    },
+    'click #refresh-stats'() {
+        region = FlowRouter.getParam("region");
+        summonerId = parseInt(FlowRouter.getParam("summonerId"));
+        Meteor.call('refreshMasteries', region, summonerId);
     },
     'submit .compare-summoner-search'(event) {
       // Prevent default browser form submit

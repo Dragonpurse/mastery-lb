@@ -114,6 +114,18 @@ Meteor.methods({
             });
             return future.wait();
         }
+    },
+    'refreshMasteries'(region, summonerId){
+        check(region, String);
+        check(summonerId, Number);
+        let regionObject = Regions.findOne({slug:region});
+        let summoner = Summoners.findOne({
+            id: summonerId,
+            region: region
+        });
+        var ms = moment(new Date()).diff(moment(summoner.re));
+        console.log()
+        //updateChampionMasteries(regionObject,summonerId);
     }
 });
 

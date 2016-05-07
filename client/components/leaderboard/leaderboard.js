@@ -14,7 +14,12 @@ export default function (Template) {
         summonerId = parseInt(FlowRouter.getQueryParam('summoner'));
         let regionSlug = FlowRouter.getQueryParam('region');
 
-        Session.set('selectedRegions', [Session.get('selectedRegion').slug]);
+        if(regionSlug){
+            Session.set('selectedRegions', [regionSlug]);
+        }else{
+            Session.set('selectedRegions', [Session.get('selectedRegion').slug]);
+        }
+
         if(page){
             Session.set('page', page);
         }else{

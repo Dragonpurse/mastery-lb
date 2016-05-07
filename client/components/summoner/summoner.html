@@ -24,7 +24,13 @@
                   </form>
               </div>
           </div>
-        <h2><span class="icon-summoner"> <img src="{{ddragonUrl}}/cdn/6.9.1/img/profileicon/{{summoner.profileIconId}}.png"/></span>{{summoner.name}} - Lv{{summoner.summonerLevel}} summoner - <span class="region-summoner">{{summoner.region}}</span></h2>
+        <h2>
+            <span class="icon-summoner">
+                <img src="{{ddragonUrl}}/cdn/6.9.1/img/profileicon/{{summoner.profileIconId}}.png"/>
+            </span>
+            {{summoner.name}} - Lv{{summoner.summonerLevel}} summoner - <span class="region-summoner">{{summoner.region}}</span>
+            <div class=""><button class="btn btn-default">Refresh Stats!</button> </div>
+        </h2>
 
         <div class="form-group search-bar" id="search-bar-summoner">
           <input type="text" class="form-control" id="champion-search" placeholder="Lookup champion">
