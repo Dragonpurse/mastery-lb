@@ -42,7 +42,6 @@ export default function (Template) {
         Meteor.subscribe('champions', '');
     });
 
-
     Template.leaderboard.helpers({
         board() {
             let championId = parseInt(FlowRouter.getParam("championId"));
@@ -107,8 +106,10 @@ export default function (Template) {
         },
         isSelectedPageSize(size) {
           return Session.get('pageSize') == size;
+        },
+        highlightSummoner(summonerId) {
+            return Session.get('summonerId') === summonerId;
         }
-
     });
 
     Template.leaderboard.events({

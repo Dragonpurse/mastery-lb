@@ -32,6 +32,11 @@
   background-color: $hover-background;
 }
 
+.highlighted {
+  background-color: #cfba6b !important;
+  font-weight: bold;
+}
+
 nav.pagination-leaderboard {
   text-align: center;
 

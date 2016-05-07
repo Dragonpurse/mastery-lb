@@ -18,9 +18,9 @@
                 </thead>
                 <tbody>
                     {{#each board}}
-                        <tr>
+                        <tr class="{{#if highlightSummoner data.playerId}}highlighted{{/if}}">
                             <td>{{ position @index }} </td>
-                            <td>{{ summoner.name }}</td>
+                            <td><a href="/summoner/{{ summoner.region }}/{{ data.playerId }}">{{ summoner.name }}</a></td>
                             <td>{{ data.championPoints }}</td>
                         </tr>
                     {{/each}}
