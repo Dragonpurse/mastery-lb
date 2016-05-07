@@ -13,7 +13,9 @@ export default function (Template) {
 
   Template.home.helpers({
     champions() {
-      return Champions.find({},{sort:{name: 1}});
+      return Champions.find({
+        'name': {$regex: Session.get('championSearch'),  $options: 'i'}
+      },{sort:{name: 1}});
     }
   });
 

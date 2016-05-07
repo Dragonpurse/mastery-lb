@@ -52,10 +52,28 @@ if (Meteor.isServer) {
             "data.championId": championId,
             region: region
         }, {
+            sort:{"data.championPoints": -1},
             limit : size,
-            offset: size * offset
+            skip: size * offset
+
         });
         return champions
+    });
+
+    Meteor.publish("leaderBoardsCount", function (region, championId) {
+        check(region, String);
+        check(championId, Number);
+        let subscription = this;
+        let summonerCount = ChampionMastery.find({
+            "data.championId": championId,
+            region: region
+        }).count();
+        let countObject = {};
+        countObject.summonerCount = summonerCount;
+        countObject.type = 'leaderboard'; // should be added because all your counts will be contained in one collection
+
+        subscription.added('counts', Random.id(), countObject);
+        subscription.ready();
     });
 
 }
@@ -67,7 +85,6 @@ Meteor.methods({
             var region = Regions.findOne({slug:regionSlug});
             updateChampionMasteries(region,summonerId);
         }
-
     }
 });
 

@@ -4,7 +4,7 @@
 
     <div class="container background">
         <div class="content">
-            <h2>LEADERBOARDS</h2>
+            <h2>Summoners: {{summonerCount}}</h2>
             <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
             <table class="table">
                 <thead>
@@ -16,11 +16,35 @@
                 </thead>
                 <tbody>
                     {{#each board}}
-                        {{>summonerLeaderboardOverview}}
+                        <tr>
+                            <td>{{ position @index }} </td>
+                            <td>{{ summoner.name }}</td>
+                            <td>{{ data.championPoints }}</td>
+                        </tr>
                     {{/each}}
                 </tbody>
             </table>
+
+            <nav>
+                <ul class="pagination">
+                    {{#if prev}}
+                        <li>
+                            <a href="{{prev}}" aria-label="Previous" id="prev">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    {{/if}}
+                    {{#if next}}
+                        <li>
+                            <a href="{{next}}" aria-label="Next" id="next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    {{/if}}
+                </ul>
+            </nav>
         </div>
+
     </div>
     <div class="bottom-wrapper">
     </div>

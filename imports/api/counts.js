@@ -1,0 +1,1 @@
+export const Counts = new Meteor.Collection("counts");
