@@ -1,32 +1,28 @@
 <template name="header">
-    
-<!--     <ul>
-        {{#each regions}}
-            <li>Region: {{slug}}</li>
-        {{/each}}
-    </ul> -->
   <nav class="header navbar navbar-default">
-    <div class="container-fluid ">
-        <form class="summoner-search">
-          <div class="row">
-            <div class="col-md-3 col-md-offset-7">
-              <div class="input-group">
-                <div class="input-group-btn region-group-btn">
-                  <input type='button' value={{selectedRegion.slug}} id='region-btn' class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <ul class="dropdown-menu">
-                    {{#each regions}}
-                        {{>region}}
-                    {{/each}}
-                  </ul>
-                </div><!-- /btn-group -->
-                <input type="text" name="summonerName" class="form-control"  placeholder="Lookup summoner">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" type="submit">Go!</button>
-                </span>
-              </div><!-- /input-group -->
-            </div><!-- /.col-lg-6 -->
-          </div>
-        </form>
+    <div id="header-logo" title="Go to the homepage" onclick="javascript:window.location = '/'">
+      <span class="header-icon"><img src="/images/little-riven.png"></span>
+      League Mastery
     </div>
+
+    <div id="summoner-lookup">
+      <form class="summoner-search">
+        <div class="input-group">
+          <div class="input-group-btn region-group-btn">
+            <input type='button' value={{selectedRegion.slug}} id='region-btn' class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <ul class="dropdown-menu">
+              {{#each regions}}
+                  {{>region}}
+              {{/each}}
+            </ul>
+          </div><!-- /btn-group -->
+          <input type="text" name="summonerName" class="form-control"  placeholder="Lookup summoner">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Go!</button>
+          </span>
+        </div><!-- /input-group -->
+      </form>
+    </div>
+
   </nav>
 </template>

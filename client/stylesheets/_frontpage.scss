@@ -1,8 +1,12 @@
 @font-face {
-    font-family: raleway;
-    src: url(/fonts/Raleway-Regular.ttf);
+  font-family: raleway;
+  src: url(/fonts/Raleway-Regular.ttf);
 }
 
+@font-face {
+  font-family: league;
+  src: url(/fonts/friz-quadrata-tt.ttf);
+}
 
 body {
   background: url('/images/background/league_bg.jpg') no-repeat center center fixed; 

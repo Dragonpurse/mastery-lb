@@ -13,6 +13,22 @@ nav.header{
     text-transform: uppercase;
   }
 
+  #header-logo {
+    float: left;
+    font-family: league;
+    color: #cfba6b;
+    font-size: 16pt;
+    cursor: pointer;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  }
+
+  #summoner-lookup {
+    float: right;
+    margin-right: 150px;
+    margin-top: 7px;
+    width: 300px;
+  }
+
   .region-group-btn {
     li {
       padding-left: 10px;
