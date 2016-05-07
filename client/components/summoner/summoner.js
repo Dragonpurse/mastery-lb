@@ -36,12 +36,13 @@ export default function (Template) {
       },{sort:{"data.championPoints": -1}});
     },
     summoner(){
-      return Summoners.findOne({});
+      return Summoners.findOne({
+        id: summonerId
+      });
     }
   });
 
   Template.summoner.onDestroyed(function(){
-    console.log('banaan');
     masteryHandler.stop();
   })
 }

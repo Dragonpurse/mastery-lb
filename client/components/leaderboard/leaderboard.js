@@ -6,7 +6,7 @@ import { Summoners } from '../../../imports/api/summoner';
 
 export default function (Template) {
 
-    let summonerId, championId;
+    let summonerId, championId, masteryHandler;
     Template.leaderboard.onCreated(function () {
         Session.set('pageSize', 10);
         championId = parseInt(FlowRouter.getParam("championId"));
@@ -24,6 +24,7 @@ export default function (Template) {
 
         //determine summoner position in case it is entered
         if(summonerId && regionSlug) {
+            Session.set('summonerId', summonerId);
             Meteor.call('getLeaderBoardPosition', championId, regionSlug, summonerId, function(error, position){
                 if(error){
                     console.log(error);
@@ -37,7 +38,7 @@ export default function (Template) {
         Meteor.subscribe('regions');
         Tracker.autorun(function () {
             Meteor.subscribe('leaderBoardsCount', Session.get('selectedRegions'), championId);
-            Meteor.subscribe('ChampionLeaderBoards', Session.get('selectedRegions'), championId, Session.get('pageSize'), Session.get('page'));
+            masteryHandler = Meteor.subscribe('ChampionLeaderBoards', Session.get('selectedRegions'), championId, Session.get('pageSize'), Session.get('page'));
         });
         Meteor.subscribe('champions', '');
     });
@@ -122,6 +123,9 @@ export default function (Template) {
         'click .items-per-page li'(event){
           Session.set('pageSize', event.target.value);
         }
+    });
+    Template.leaderboard.onDestroyed(function(){
+        masteryHandler.stop();
     });
 
 }
