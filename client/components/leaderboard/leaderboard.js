@@ -6,11 +6,12 @@ import { Summoners } from '../../../imports/api/summoner';
 
 export default function (Template) {
 
+    let summonerId, championId;
     Template.leaderboard.onCreated(function () {
         Session.set('pageSize', 10);
-        let championId = parseInt(FlowRouter.getParam("championId"));
+        championId = parseInt(FlowRouter.getParam("championId"));
         let page = parseInt(FlowRouter.getQueryParam('page'));
-        let summonerId = parseInt(FlowRouter.getQueryParam('summoner'));
+        summonerId = parseInt(FlowRouter.getQueryParam('summoner'));
         let regionSlug = FlowRouter.getQueryParam('region');
 
         Session.set('selectedRegions', [Session.get('selectedRegion').slug]);
@@ -23,7 +24,6 @@ export default function (Template) {
 
         //determine summoner position in case it is entered
         if(summonerId && regionSlug) {
-            Session.set('summonerId', summonerId);
             Meteor.call('getLeaderBoardPosition', championId, regionSlug, summonerId, function(error, position){
                 if(error){
                     console.log(error);

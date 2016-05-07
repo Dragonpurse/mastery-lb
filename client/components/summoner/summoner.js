@@ -3,7 +3,7 @@ import { Champions } from '../../../imports/api/champion.js';
 import { Summoners } from '../../../imports/api/summoner.js';
 export default function (Template) {
 
-  var region, summonerId;
+  let region, summonerId, masteryHandler;
 
   Template.summoner.onCreated(function () {
     region = FlowRouter.getParam("region");
@@ -15,7 +15,7 @@ export default function (Template) {
     Session.set('championSearch', '');
     Session.set('chestGranted', false);
     Tracker.autorun(function () {
-       Meteor.subscribe('SummonerChampionMastery', region , summonerId, Session.get('championSearch'), Session.get('chestGranted'));
+       masteryHandler = Meteor.subscribe('SummonerChampionMastery', region , summonerId, Session.get('championSearch'), Session.get('chestGranted'));
     });
   });
 
@@ -38,6 +38,11 @@ export default function (Template) {
     summoner(){
       return Summoners.findOne({});
     }
+  });
+
+  Template.summoner.onDestroyed(function(){
+    console.log('banaan');
+    masteryHandler.stop();
   })
 }
 
