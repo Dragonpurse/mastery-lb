@@ -123,9 +123,21 @@ Meteor.methods({
             id: summonerId,
             region: region
         });
-        var ms = moment(new Date()).diff(moment(summoner.re));
-        console.log()
-        //updateChampionMasteries(regionObject,summonerId);
+        if(!summoner.hasOwnProperty('statsRefreshedAt')){
+            summoner.statsRefreshedAt = new Date();
+            Summoners.update(summoner._id, summoner);
+            updateChampionMasteries(regionObject,summonerId);
+        }else {
+            var minutes = moment(new Date()).diff(moment(summoner.statsRefreshedAt), 'minutes');
+            if(minutes > 60){
+                summoner.statsRefreshedAt = new Date();
+                Summoners.update(summoner._id, summoner);
+                updateChampionMasteries(regionObject,summonerId);
+            }
+        }
+
+
+        //
     }
 });
 

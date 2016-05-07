@@ -29,7 +29,10 @@
                 <img src="{{ddragonUrl}}/cdn/6.9.1/img/profileicon/{{summoner.profileIconId}}.png"/>
             </span>
             {{summoner.name}} - Lv{{summoner.summonerLevel}} summoner - <span class="region-summoner">{{summoner.region}}</span>
-            <div class=""><button class="btn btn-default">Refresh Stats!</button> </div>
+            {{# if canRefreshStats summoner}}
+                <div class=""><button id='refresh-stats' class="btn btn-default">Refresh Stats!</button> </div>
+            {{/if}}
+
         </h2>
 
         <div class="form-group search-bar" id="search-bar-summoner">

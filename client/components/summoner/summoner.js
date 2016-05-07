@@ -80,6 +80,16 @@ export default function (Template) {
         Session.set( "selectedCompareRegion", selectedRegion);
       }
       return selectedRegion;
+    },
+    canRefreshStats(summoner){
+
+      if(!summoner.hasOwnProperty('statsRefreshedAt')){
+        return true;
+      }else{
+        var minutes = moment(new Date()).diff(moment(summoner.statsRefreshedAt), 'minutes');
+        return minutes > 60;
+      }
+
     }
   });
 

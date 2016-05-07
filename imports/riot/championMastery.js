@@ -22,11 +22,15 @@ export const updateChampionMasteries = function(region, summonerId){
                         'data.championId': championMastery.championId,
                         region: region.slug
                     });
+                    let mastery;
                     if(existing){
-                        console.log('updating');
-
+                        mastery = {
+                            region: region.slug,
+                            data: championMastery
+                        };
+                        ChampionMastery.update(existing._id, mastery);
                     }else{
-                        var mastery = {
+                        mastery = {
                             region: region.slug,
                             data: championMastery
                         };

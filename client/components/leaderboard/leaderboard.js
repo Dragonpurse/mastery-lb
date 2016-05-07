@@ -86,7 +86,6 @@ export default function (Template) {
             return Counts.findOne({ type: 'leaderboard' })
         },
         next(summonerCount){
-            console.log(summonerCount);
             let championId = parseInt(FlowRouter.getParam("championId"));
             let pageSize = Session.get('pageSize');
             let page =Session.get('page');
