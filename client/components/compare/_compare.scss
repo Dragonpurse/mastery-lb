@@ -1,0 +1,53 @@
+.compare-tables {
+  margin-top: 20px;
+}
+
+.table-first-summoner {
+  float: left;
+  width: 50%;
+  text-align: right;
+  table {
+    th {
+      text-align: right;
+    }
+    border-right: 2px dashed;
+  }
+}
+.table-second-summoner {
+  float: right;
+  width: 50%;
+  text-align: left;
+}
+
+.summoner-names {
+  margin: 30px;
+  padding-bottom: 20px;
+
+  .left {
+    float: left;
+  }
+
+  .summoner-details {
+    padding-top: 7px;
+  }
+
+  .right {
+    text-align: right;
+    float: right;
+  }
+
+  .icon-summoner.right {
+    padding-left: 20px;
+    padding-right: 0px;
+  }
+}
+
+#versus-wrapper {
+  text-align: center;
+  margin-bottom: -95px;
+
+  img {
+    display : block;
+    margin : auto;
+  }
+}
