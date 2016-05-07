@@ -58,10 +58,18 @@ export default function (Template) {
 
   Template.summoner.helpers({
     stats() {
-      return ChampionMastery.find({
-        "data.playerId": summonerId,
-        region: region
-      },{sort:{"data.championPoints": -1}});
+      if (!Session.get('chestGranted')) {
+        return ChampionMastery.find({
+          "data.playerId": summonerId,
+          region: region
+        },{sort:{"data.championPoints": -1}});
+      } else {
+        return ChampionMastery.find({
+          "data.playerId": summonerId,
+          'data.chestGranted': Session.get('chestGranted'),
+          region: region
+        },{sort:{"data.championPoints": -1}});
+      }
     },
     summoner(){
       return Summoners.findOne({
