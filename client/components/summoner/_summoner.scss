@@ -22,6 +22,7 @@
 #search-bar-summoner {
   margin-left: 0;
   margin-right: 0;
+  padding-top: 50px;
 }
 
 table.summoner-info {
@@ -49,4 +50,23 @@ table.summoner-info {
   input[type="checkbox"] {
     margin-left: 10px;
   }
+}
+
+.summoner {
+  .left {
+    float: left;
+  }
+
+  .summoner-details {
+    padding-top: 7px;
+  }
+}
+
+#region-btn {
+  text-transform: uppercase;
+}
+
+#compare-block {
+  width: 400px;
+  float: right;
 }
