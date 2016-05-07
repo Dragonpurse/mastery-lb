@@ -6,24 +6,27 @@ import { Summoners } from '../../../imports/api/summoner';
 
 export default function (Template) {
 
-    var pageSize = 2,
-        leaderboardsHandler,
+    var leaderboardsHandler,
         championHandler;
 
     Template.leaderboard.onCreated(function () {
+        Session.set('pageSize', 10);
         var championId = parseInt(FlowRouter.getParam("championId"));
         var page = parseInt(FlowRouter.getQueryParam('page'));
         Session.set('selectedRegions', [Session.get('selectedRegion').slug]);
         if(page){
-            Session.set('page',page);
+            Session.set('page', page);
         }else{
-            Session.set('page',0);
+            Session.set('page', 0);
         }
+
+        Session.set('pageSize', 10);
+
         Meteor.subscribe('allSummoners');
         Meteor.subscribe('regions');
         Meteor.subscribe('leaderBoardsCount', 'euw', championId);
         Tracker.autorun(function () {
-            leaderboardsHandler = Meteor.subscribe('ChampionLeaderBoards', Session.get('selectedRegions'), championId, pageSize, Session.get('page'));
+          leaderboardsHandler = Meteor.subscribe('ChampionLeaderBoards', Session.get('selectedRegions'), championId, Session.get('pageSize'), Session.get('page'));
         });
         championHandler = Meteor.subscribe('champions', '');
     });
@@ -42,6 +45,7 @@ export default function (Template) {
         pages(){
             let championId = parseInt(FlowRouter.getParam("championId"));
             let count = Counts.findOne({ type: 'leaderboard' });
+            let pageSize = Session.get('pageSize');
             if(count){
                 let pageCount = Math.ceil(count.summonerCount/pageSize);
                 let counter = 0;
@@ -61,6 +65,7 @@ export default function (Template) {
         next(){
             let championId = parseInt(FlowRouter.getParam("championId"));
             let count = Counts.findOne({ type: 'leaderboard' });
+            let pageSize = Session.get('pageSize');
             if(count) {
                 let page =Session.get('page');
                 let pageCount = Math.ceil(count.summonerCount / pageSize);
@@ -81,6 +86,7 @@ export default function (Template) {
         },
         position(index){
             let page =Session.get('page');
+            let pageSize = Session.get('pageSize');
             return (pageSize * page) + 1 + index     ;
         }
 

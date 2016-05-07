@@ -27,19 +27,25 @@
                 </tbody>
             </table>
 
-            <nav>
+            <nav class="pagination-leaderboard">
+                <ul class="list-inline items-per-page">
+                Per page:
+                  <li class="active">10</li>,
+                  <li>50</li>,
+                  <li>100</li>
+                </ul>
                 <ul class="pagination">
                     {{#if prev}}
                         <li>
                             <a href="{{prev}}" aria-label="Previous" id="prev">
-                                <span aria-hidden="true">&laquo;</span>
+                                <span aria-hidden="true">&laquo; Previous</span>
                             </a>
                         </li>
                     {{/if}}
                     {{#if next}}
                         <li>
                             <a href="{{next}}" aria-label="Next" id="next">
-                                <span aria-hidden="true">&raquo;</span>
+                                <span aria-hidden="true">Next &raquo;</span>
                             </a>
                         </li>
                     {{/if}}

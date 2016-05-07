@@ -31,3 +31,29 @@
 .highlight {
   background-color: $hover-background;
 }
+
+nav.pagination-leaderboard {
+  text-align: center;
+
+  ul.items-per-page {
+    float: left;
+    position: absolute;
+    margin-top: 27px;
+    font-size: small;
+    margin-left: 0px;
+
+    li {
+      cursor: pointer;
+    }
+    li.active {
+      text-decoration: underline;
+    }
+
+  }
+
+  li a{
+    font-size: small;
+    width: 100px;
+    margin: 0 10px;
+  }
+}
