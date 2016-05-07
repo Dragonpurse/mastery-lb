@@ -69,6 +69,15 @@ export default function (Template) {
                 id: summoner.id,
                 region: summoner.region
             })
+        },
+        compareScores(summoner1championPoints, summoner2championPoints) {
+            if(!summoner1championPoints){
+                return false;
+            }
+            if(!summoner2championPoints){
+                return true;
+            }
+            return summoner1championPoints.data.championPoints > summoner2championPoints.data.championPoints;
         }
     });
 
@@ -76,4 +85,10 @@ export default function (Template) {
         masteryHandler1.stop();
         masteryHandler2.stop();
     })
+
+    Template.compare.events({
+      'keyup #champion-search'(event){
+        Session.set('championSearch', event.target.value);
+      },
+    });
 }

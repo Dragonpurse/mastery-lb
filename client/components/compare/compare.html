@@ -30,26 +30,30 @@
 
 
       <div class="row">
-        <div id="versus-wrapper">
-          <img src="/images/versus.png">
-        </div>
         <div class="summoner-names">
+          <div id="versus-wrapper">
+            <img src="/images/versus.png">
+          </div>
           <div class="summoner-left">
             <div class="icon-summoner left"> <img src="{{ddragonUrl}}/cdn/6.9.1/img/profileicon/1121.png"/></div>
             <div class="summoner-details left">
-              <h2>Shiva</h2>
-              Lv30 summoner - <span class="region-summoner">euw</span>
+              <h2><a href="/summoner/{{summoner1.region}}/{{summoner1.id}}">{{ summoner1.name }}</a></h2>
+              Lv{{summoner1.summonerLevel}} summoner - <span class="region-summoner">{{summoner1.region}}</span>
             </div>
           </div>
 
           <div class="summoner-right">
             <div class="icon-summoner right"> <img src="{{ddragonUrl}}/cdn/6.9.1/img/profileicon/1122.png"/></div>
             <div class="summoner-details right">
-              <h2>Kamikaze</h2>
-              Lv30 summoner - <span class="region-summoner">euw</span>
+              <h2><a href="/summoner/{{summoner2.region}}/{{summoner2.id}}">{{ summoner2.name }}</a></h2>
+              Lv{{summoner2.summonerLevel}} summoner - <span class="region-summoner">{{summoner2.region}}</span>
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="form-group search-bar" id="search-bar-compare">
+        <input type="text" class="form-control" id="champion-search" placeholder="Lookup champion">
       </div>
 
       <div class="compare-tables">
@@ -58,36 +62,26 @@
             <thead>
               <tr>
                 <th>Champion</th>
-                <th>Mastery level</th>
+                <th>Total mastery pts</th>
                 <th>Highest grade</th>
                 <th>Up arrow</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Doe</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td><img src="/images/down-arrow.png"></td>
-              </tr>
-              <tr>
-                <td>Doe</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td><img src="/images/down-arrow.png"></td>
-              </tr>
-              <tr>
-                <td>Doe</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td><img src="/images/up-arrow.png"></td>
-              </tr>
-              <tr>
-                <td>Doe</td>
-                <td>John</td>
-                <td>Doe</td>
-                <td><img src="/images/up-arrow.png"></td>
-              </tr>
+              {{#each champions}}
+                  {{#if hasChampion}}
+                      <tr onclick="window.document.location='/leaderboard/{{ id }}?summoner={{ summoner1.id }}&region={{ summoner1.region }}'" style='cursor: pointer;'>
+                        <td><img src="{{ddragonUrl}}/cdn/6.9.1/img/champion/{{ key }}.png"/></td>
+                        <td>{{masteriesSummoner1.data.championPoints}}</td>
+                        <td>{{masteriesSummoner1.data.highestGrade}}</td>
+                        {{#if compareScores masteriesSummoner1 masteriesSummoner2 }}
+                          <td><img src="/images/up-arrow.png"></td>
+                        {{ else }}
+                          <td><img src="/images/down-arrow.png"></td>
+                        {{/if}}
+                      </tr>
+                  {{/if}}
+              {{/each}}
             </tbody>
           </table>
         </div>
@@ -97,35 +91,25 @@
               <tr>
                 <th>Up arrow</th>
                 <th>Highest grade</th>
-                <th>Mastery level</th>
+                <th>Total mastery pts</th>
                 <th>Champion</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><img src="/images/up-arrow.png"></td>
-                <td>Doe</td>
-                <td>John</td>
-                <td>Doe</td>
-              </tr>
-              <tr>
-                <td><img src="/images/up-arrow.png"></td>
-                <td>Doe</td>
-                <td>John</td>
-                <td>Doe</td>
-              </tr>
-              <tr>
-                <td><img src="/images/down-arrow.png"></td>
-                <td>Doe</td>
-                <td>John</td>
-                <td>Doe</td>
-              </tr>
-              <tr>
-                <td><img src="/images/down-arrow.png"></td>
-                <td>Doe</td>
-                <td>John</td>
-                <td>Doe</td>
-              </tr>
+              {{#each champions}}
+                {{#if hasChampion }}
+                  <tr onclick="window.document.location='/leaderboard/{{ id }}?summoner={{ summoner2.id }}&region={{ summoner2.region }}'" style="cursor: pointer;">
+                    {{#if compareScores masteriesSummoner2 masteriesSummoner1 }}
+                      <td><img src="/images/up-arrow.png"></td>
+                    {{ else }}
+                      <td><img src="/images/down-arrow.png"></td>
+                    {{/if}}
+                    <td>{{masteriesSummoner2.data.highestGrade}}</td>
+                    <td>{{masteriesSummoner2.data.championPoints}}</td>
+                    <td><img src="{{ddragonUrl}}/cdn/6.9.1/img/champion/{{ key }}.png"/></td>
+                  </tr>
+                {{/if}}
+              {{/each}}
             </tbody>
           </table>
         </div>
