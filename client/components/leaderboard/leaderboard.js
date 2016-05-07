@@ -34,7 +34,11 @@ export default function (Template) {
 
     Template.leaderboard.helpers({
         board() {
-            return ChampionMastery.find({},{sort:{"data.championPoints": -1}});
+            let championId = parseInt(FlowRouter.getParam("championId"));
+            return ChampionMastery.find({
+                "data.championId": championId,
+                region: {$in: Session.get('selectedRegions')}
+            },{sort:{"data.championPoints": -1}});
         },
         champion() {
           return Champions.findOne({id:parseInt(FlowRouter.getParam("championId"))});
@@ -98,8 +102,7 @@ export default function (Template) {
         },
         'click #next'(){
           Session.set('page', Session.get('page') +1);
-        },
-
+        }
     });
 
     Template.leaderboard.onDestroyed(function () {
