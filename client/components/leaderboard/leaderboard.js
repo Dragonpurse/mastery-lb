@@ -6,13 +6,14 @@ import { Summoners } from '../../../imports/api/summoner';
 
 export default function (Template) {
 
-    var pageSize = 1,
+    var pageSize = 2,
         leaderboardsHandler,
         championHandler;
 
     Template.leaderboard.onCreated(function () {
         var championId = parseInt(FlowRouter.getParam("championId"));
         var page = parseInt(FlowRouter.getQueryParam('page'));
+        Session.set('selectedRegions', [Session.get('selectedRegion').slug]);
         if(page){
             Session.set('page',page);
         }else{
@@ -20,26 +21,13 @@ export default function (Template) {
         }
         Meteor.subscribe('allSummoners');
         Meteor.subscribe('regions');
-        Meteor.subscribe("leaderBoardsCount", 'euw', championId);
+        Meteor.subscribe('leaderBoardsCount', 'euw', championId);
         Tracker.autorun(function () {
-            leaderboardsHandler = Meteor.subscribe('ChampionLeaderBoards', 'euw', championId, pageSize, Session.get('page'));
+            leaderboardsHandler = Meteor.subscribe('ChampionLeaderBoards', Session.get('selectedRegions'), championId, pageSize, Session.get('page'));
         });
-        //To load champion details
         championHandler = Meteor.subscribe('champions', '');
     });
 
-    // Template.leaderboard.rendered = function(){
-    //   var element = $('#' + Session.get("selectedRegion").slug);
-    //   console.log(element);
-    //   if(!element.hasClass("highlight")){
-    //       element.addClass("highlight"); 
-    //   }
-    // }
-
-    // Template.leaderboard.onRendered(function () {
-    //   console.log(this.$("#" + Session.get("selectedRegion").slug));
-    //   this.$("#" + Session.get("selectedRegion").slug).addClass("highlight"); 
-    // });
 
     Template.leaderboard.helpers({
         board() {
@@ -49,10 +37,7 @@ export default function (Template) {
           return Champions.findOne({id:parseInt(FlowRouter.getParam("championId"))});
         },    
         regions() {
-          return Regions.find();
-        },
-        selectedRegion() {
-          return Session.get("selectedRegion").slug;
+            return Regions.find();
         },
         pages(){
             let championId = parseInt(FlowRouter.getParam("championId"));
@@ -98,6 +83,7 @@ export default function (Template) {
             let page =Session.get('page');
             return (pageSize * page) + 1 + index     ;
         }
+
     });
 
     Template.leaderboard.events({
@@ -107,9 +93,7 @@ export default function (Template) {
         'click #next'(){
           Session.set('page', Session.get('page') +1);
         },
-        'click .region-checkbox'(event){
-          $(event.target).toggleClass("highlight");
-        }
+
     });
 
     Template.leaderboard.onDestroyed(function () {

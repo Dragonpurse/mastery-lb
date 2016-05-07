@@ -6,6 +6,7 @@ import createHeader from './components/header/header';
 import createSummoner from './components/summoner/summoner.js';
 import createChampionSummonerOverview from './components/summoner/champion_summoner_overview.js';
 import createLeaderBoard from './components/leaderboard/leaderboard.js';
+import createRegionLeaderBoard from './components/leaderboard/regionLeaderboard.js';
 
 createMainRoutes();
 createGlobalHelpers(Template);
@@ -14,3 +15,4 @@ createHeader(Template);
 createSummoner(Template);
 createChampionSummonerOverview(Template);
 createLeaderBoard(Template);
+createRegionLeaderBoard(Template);

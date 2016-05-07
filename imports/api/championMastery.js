@@ -42,15 +42,15 @@ if (Meteor.isServer) {
         return masteries;
     });
 
-    Meteor.publish('ChampionLeaderBoards', function (region, championId, size, offset) {
-        check(region, String);
+    Meteor.publish('ChampionLeaderBoards', function (regions, championId, size, offset) {
+        check(regions, Array);
         check(championId, Number);
         check(size, Number);
         check(offset, Number);
 
         var champions= ChampionMastery.find({
             "data.championId": championId,
-            region: region
+            region: {$in: regions}
         }, {
             sort:{"data.championPoints": -1},
             limit : size,
