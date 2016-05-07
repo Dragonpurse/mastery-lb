@@ -30,9 +30,9 @@
             <nav class="pagination-leaderboard">
                 <ul class="list-inline items-per-page">
                 Per page:
-                  <li class="active">10</li>,
-                  <li>50</li>,
-                  <li>100</li>
+                  <li class="{{#if isSelectedPageSize 10}}active{{/if}}" value="10">10</li>,
+                  <li class="{{#if isSelectedPageSize 50}}active{{/if}}" value="50">50</li>,
+                  <li class="{{#if isSelectedPageSize 100}}active{{/if}}" value="100">100</li>
                 </ul>
                 <ul class="pagination">
                     {{#if prev}}

@@ -92,6 +92,9 @@ export default function (Template) {
             let page =Session.get('page');
             let pageSize = Session.get('pageSize');
             return (pageSize * page) + 1 + index     ;
+        },
+        isSelectedPageSize(size) {
+          return Session.get('pageSize') == size;
         }
 
     });
@@ -102,7 +105,10 @@ export default function (Template) {
         },
         'click #next'(){
           Session.set('page', Session.get('page') +1);
-        }
+        },
+        'click .items-per-page li'(event){
+          Session.set('pageSize', event.target.value);
+        },
     });
 
     Template.leaderboard.onDestroyed(function () {
