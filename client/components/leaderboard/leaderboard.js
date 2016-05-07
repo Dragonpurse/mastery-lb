@@ -6,29 +6,40 @@ import { Summoners } from '../../../imports/api/summoner';
 
 export default function (Template) {
 
-    var leaderboardsHandler,
-        championHandler;
-
     Template.leaderboard.onCreated(function () {
         Session.set('pageSize', 10);
-        var championId = parseInt(FlowRouter.getParam("championId"));
-        var page = parseInt(FlowRouter.getQueryParam('page'));
+        let championId = parseInt(FlowRouter.getParam("championId"));
+        let page = parseInt(FlowRouter.getQueryParam('page'));
+        let summonerId = parseInt(FlowRouter.getQueryParam('summoner'));
+        let regionSlug = FlowRouter.getQueryParam('region');
+
         Session.set('selectedRegions', [Session.get('selectedRegion').slug]);
         if(page){
             Session.set('page', page);
         }else{
             Session.set('page', 0);
         }
-
         Session.set('pageSize', 10);
 
+        //determine summoner position in case it is entered
+        if(summonerId && regionSlug) {
+            Session.set('summonerId', summonerId);
+            Meteor.call('getLeaderBoardPosition', championId, regionSlug, summonerId, function(error, position){
+                if(error){
+                    console.log(error);
+                }else{
+                    let summonerOnPage = Math.floor(position/Session.get('pageSize'));
+                    Session.set('page', summonerOnPage);
+                }
+            });
+        }
         Meteor.subscribe('allSummoners');
         Meteor.subscribe('regions');
-        Meteor.subscribe('leaderBoardsCount', 'euw', championId);
         Tracker.autorun(function () {
-          leaderboardsHandler = Meteor.subscribe('ChampionLeaderBoards', Session.get('selectedRegions'), championId, Session.get('pageSize'), Session.get('page'));
+            Meteor.subscribe('leaderBoardsCount', Session.get('selectedRegions'), championId);
+            Meteor.subscribe('ChampionLeaderBoards', Session.get('selectedRegions'), championId, Session.get('pageSize'), Session.get('page'));
         });
-        championHandler = Meteor.subscribe('champions', '');
+        Meteor.subscribe('champions', '');
     });
 
 
@@ -77,6 +88,7 @@ export default function (Template) {
                     return getUrl(page+1,championId);
                 }
             }
+
         },
         prev(){
             let championId = parseInt(FlowRouter.getParam("championId"));
@@ -108,12 +120,9 @@ export default function (Template) {
         },
         'click .items-per-page li'(event){
           Session.set('pageSize', event.target.value);
-        },
+        }
     });
 
-    Template.leaderboard.onDestroyed(function () {
-        leaderboardsHandler.stop();
-    });
 }
 
 function getUrl(counter, championId){

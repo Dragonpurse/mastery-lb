@@ -1,6 +1,6 @@
 <template name="champion_summoner_overview">
   <tr>
-    <td> <img src="{{ddragonUrl}}/cdn/6.9.1/img/champion/{{champion.key}}.png"/></td>
+    <td> <a href="/leaderboard/{{data.championId}}?summoner={{data.playerId}}&region={{region}}"> <img src="{{ddragonUrl}}/cdn/6.9.1/img/champion/{{champion.key}}.png"/></a></td>
     <td>{{ data.championLevel }}</td>
     <td>
     {{#if data.highestGrade}}

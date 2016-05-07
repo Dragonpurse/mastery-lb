@@ -13,6 +13,7 @@ ChampionMastery.helpers({
     }
 });
 if (Meteor.isServer) {
+    var Future = Npm.require('fibers/future');
     // This code only runs on the server
     Meteor.publish('SummonerChampionMastery', function (region, summonerId, searchQuery, chestGranted) {
         check(region, String);
@@ -59,25 +60,23 @@ if (Meteor.isServer) {
         check(size, Number);
         check(offset, Number);
 
-        var champions= ChampionMastery.find({
+        return ChampionMastery.find({
             "data.championId": championId,
             region: {$in: regions}
         }, {
-            sort:{"data.championPoints": -1},
-            limit : size,
+            sort: {"data.championPoints": -1},
+            limit: size,
             skip: size * offset
-
         });
-        return champions
     });
 
-    Meteor.publish("leaderBoardsCount", function (region, championId) {
-        check(region, String);
+    Meteor.publish("leaderBoardsCount", function (regions, championId) {
+        check(regions, Array);
         check(championId, Number);
         let subscription = this;
         let summonerCount = ChampionMastery.find({
             "data.championId": championId,
-            region: region
+            region: {$in: regions}
         }).count();
         let countObject = {};
         countObject.summonerCount = summonerCount;
@@ -86,17 +85,37 @@ if (Meteor.isServer) {
         subscription.added('counts', Random.id(), countObject);
         subscription.ready();
     });
-
 }
 Meteor.methods({
     'updateSummonerStats'(regionSlug, summonerId) {
         check(regionSlug, String);
         check(summonerId, String);
         if(Meteor.isServer){
-            var region = Regions.findOne({slug:regionSlug});
+            let region = Regions.findOne({slug:regionSlug});
             updateChampionMasteries(region,summonerId);
+
+        }
+    },
+    'getLeaderBoardPosition'(championId, regionSlug, summonerId){
+        check(regionSlug, String);
+        check(summonerId, Number);
+        check(championId, Number);
+        if(Meteor.isServer){
+            var future = new Future();
+            let championMasteries = ChampionMastery.find({
+                "data.championId": championId,
+                region: regionSlug
+            },{sort: {"data.championPoints": -1}});
+
+            championMasteries.forEach(function(mastery, index){
+                if(mastery.region === regionSlug && mastery.data.playerId == summonerId){
+                    future.return(index);
+                }
+            });
+            return future.wait();
         }
     }
 });
+
 
 

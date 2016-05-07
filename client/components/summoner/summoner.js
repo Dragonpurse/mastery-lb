@@ -26,11 +26,14 @@ export default function (Template) {
     'click #hide-redeemed'(event){
       Session.set('chestGranted', event.target.checked);
     }
-  })
+  });
 
   Template.summoner.helpers({
     stats() {
-      return ChampionMastery.find({},{sort:{"data.championPoints": -1}});
+      return ChampionMastery.find({
+        "data.playerId": summonerId,
+        region: region
+      },{sort:{"data.championPoints": -1}});
     },
     summoner(){
       return Summoners.findOne({});
