@@ -29,17 +29,19 @@ nav.header{
     width: 300px;
   }
 
-  .region-group-btn {
-    li {
-      padding-left: 10px;
-    }
 
-    li:hover{
-      background-color: $background-main;
-    }
-  }
 
   select{
     background-color: white;
+  }
+}
+.region-group-btn {
+  li {
+    padding-left: 10px;
+  }
+
+  li:hover{
+    cursor: pointer;
+    background-color: $background-main;
   }
 }

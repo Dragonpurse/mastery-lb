@@ -3,7 +3,29 @@
     </div>
     <div class="container background">
       <div class="content">
+          <div class="row">
+              <div class="col-lg-push-6 col-lg-6">
+                  <h3>Compare with a friend</h3>
+                  <form class="compare-summoner-search">
+                      <div class="input-group">
+                          <div class="input-group-btn region-group-btn">
+                              <input type='button' value='{{selectedRegion.slug}}' id='region-btn' class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <ul class="dropdown-menu">
+                                  {{#each regions}}
+                                      <li class="region">{{name}}</li>
+                                  {{/each}}
+                              </ul>
+                          </div><!-- /btn-group -->
+                          <input type="text" name="summonerName" class="form-control"  placeholder="Lookup summoner">
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Compare!</button>
+                          </span>
+                      </div><!-- /input-group -->
+                  </form>
+              </div>
+          </div>
         <h2><span class="icon-summoner"> <img src="{{ddragonUrl}}/cdn/6.9.1/img/profileicon/{{summoner.profileIconId}}.png"/></span>{{summoner.name}} - Lv{{summoner.summonerLevel}} summoner - <span class="region-summoner">{{summoner.region}}</span></h2>
+
         <div class="form-group search-bar" id="search-bar-summoner">
           <input type="text" class="form-control" id="champion-search" placeholder="Lookup champion">
         </div>

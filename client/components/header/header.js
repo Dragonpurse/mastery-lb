@@ -38,9 +38,10 @@ export default function (Template) {
       Meteor.call('summoner.search', selectedRegion, summonerName, function (error, result) {
           if(error){
             console.log(error);
-          }
-          if(result){
-            window.location.href = '/summoner/' + result.region + '/' + result.id;
+          }else{
+            if(result){
+              window.location.href = '/summoner/' + result.region + '/' + result.id;
+            }
           }
         }
       );

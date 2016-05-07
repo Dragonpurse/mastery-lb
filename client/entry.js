@@ -7,6 +7,7 @@ import createSummoner from './components/summoner/summoner.js';
 import createChampionSummonerOverview from './components/summoner/champion_summoner_overview.js';
 import createLeaderBoard from './components/leaderboard/leaderboard.js';
 import createRegionLeaderBoard from './components/leaderboard/regionLeaderboard.js';
+import createCompare from './components/compare/compare';
 
 createMainRoutes();
 createGlobalHelpers(Template);
@@ -16,3 +17,4 @@ createSummoner(Template);
 createChampionSummonerOverview(Template);
 createLeaderBoard(Template);
 createRegionLeaderBoard(Template);
+createCompare(Template);
