@@ -21,6 +21,7 @@ export default function (Template) {
         return selectedRegion;
       }else{
         selectedRegion = Regions.findOne();
+        Session.setPersistent( "selectedRegion", selectedRegion);
       }
       return selectedRegion;
     }

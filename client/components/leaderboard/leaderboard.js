@@ -1,4 +1,6 @@
 import { ChampionMastery } from '../../../imports/api/championMastery.js';
+import { Champions } from '../../../imports/api/champion.js';
+import { Regions } from '../../../imports/api/region.js';
 import { Counts } from '../../../imports/api/counts.js';
 import { Summoners } from '../../../imports/api/summoner';
 
@@ -26,9 +28,31 @@ export default function (Template) {
         championHandler = Meteor.subscribe('champions', '');
     });
 
+    // Template.leaderboard.rendered = function(){
+    //   var element = $('#' + Session.get("selectedRegion").slug);
+    //   console.log(element);
+    //   if(!element.hasClass("highlight")){
+    //       element.addClass("highlight"); 
+    //   }
+    // }
+
+    // Template.leaderboard.onRendered(function () {
+    //   console.log(this.$("#" + Session.get("selectedRegion").slug));
+    //   this.$("#" + Session.get("selectedRegion").slug).addClass("highlight"); 
+    // });
+
     Template.leaderboard.helpers({
         board() {
             return ChampionMastery.find({},{sort:{"data.championPoints": -1}});
+        },
+        champion() {
+          return Champions.findOne({id:parseInt(FlowRouter.getParam("championId"))});
+        },    
+        regions() {
+          return Regions.find();
+        },
+        selectedRegion() {
+          return Session.get("selectedRegion").slug;
         },
         pages(){
             let championId = parseInt(FlowRouter.getParam("championId"));
@@ -75,15 +99,18 @@ export default function (Template) {
             return (pageSize * page) + 1 + index     ;
         }
     });
+
     Template.leaderboard.events({
         'click #prev'(){
-            Session.set('page', Session.get('page') -1);
+          Session.set('page', Session.get('page') -1);
         },
         'click #next'(){
-            Session.set('page', Session.get('page') +1);
+          Session.set('page', Session.get('page') +1);
+        },
+        'click .region-checkbox'(event){
+          $(event.target).toggleClass("highlight");
         }
     });
-
 
     Template.leaderboard.onDestroyed(function () {
         leaderboardsHandler.stop();

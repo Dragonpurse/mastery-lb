@@ -4,12 +4,14 @@
 
     <div class="container background">
         <div class="content">
-            <h2>Summoners: {{summonerCount}}</h2>
-            <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
-            <table class="table">
+            <h2><span class="leaderboard-champion-icon"><img src="{{ddragonUrl}}/cdn/6.9.1/img/champion/{{champion.key}}.png"/></span>Leaderboards for {{ champion.name }}</h2>
+            {{#each regions}}
+                {{> regionLeaderboard }}
+            {{/each}}
+            <table class="table summoner-info">
                 <thead>
                 <tr>
-                    <th>#</th>
+                    <th>Rank #</th>
                     <th>Summoner name</th>
                     <th>Score</th>
                 </tr>

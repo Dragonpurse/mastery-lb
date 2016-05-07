@@ -1,0 +1,33 @@
+.leaderboard-champion-icon {
+  padding-right: 20px;
+
+  img {
+    width: 80px; /* you can use % */
+    height: auto;  
+  }
+}
+
+.region-checkbox {
+  background-color: #CCC;
+  padding-left: 0px;
+  margin: 20px 0 10px 0 !important;
+
+  label {
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0 10px;
+    margin-bottom: 0px;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    
+  }
+  input[type="checkbox"] {
+    display: none;
+  }
+}
+
+.highlight {
+  background-color: $hover-background;
+}

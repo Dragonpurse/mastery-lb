@@ -42,8 +42,8 @@ table.summoner-info {
     width: 40%;
   }
 
-  tr:hover {
-    background-color: #a2ce88;
+  tbody tr:hover {
+    background-color: $hover-background;
   }
 
   input[type="checkbox"] {
