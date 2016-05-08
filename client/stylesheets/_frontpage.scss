@@ -55,3 +55,9 @@ body {
   padding-left: 15px;
   padding-right: 15px;
 }
+
+.sa-button-container .sa-confirm-button-container {
+  button {
+    background-color: $hover-background !important;
+  }
+}
