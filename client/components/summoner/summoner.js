@@ -90,14 +90,12 @@ export default function (Template) {
       return selectedRegion;
     },
     canRefreshStats(summoner){
-
       if(!summoner || !summoner.hasOwnProperty('statsRefreshedAt')){
         return true;
       }else{
         var minutes = moment(new Date()).diff(moment(summoner.statsRefreshedAt), 'minutes');
         return minutes > 60;
       }
-
     }
   });
 

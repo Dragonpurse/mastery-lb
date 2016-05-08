@@ -1,3 +1,4 @@
 .idea
-settings.json
+settings-production.json
 node_modules
+*.tar.gz
