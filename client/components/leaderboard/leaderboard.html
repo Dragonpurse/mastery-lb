@@ -8,10 +8,11 @@
             {{#each regions}}
                 {{> regionLeaderboard }}
             {{/each}}
-            <table class="table summoner-info">
+            <table class="table summoner-info" id="leaderboard">
                 <thead>
                 <tr>
                     <th>Rank #</th>
+                    <th>Region</th>
                     <th>Summoner name</th>
                     <th>Score</th>
                 </tr>
@@ -20,6 +21,7 @@
                     {{#each board}}
                         <tr class="{{#if highlightSummoner data.playerId}}highlighted{{/if}}">
                             <td>{{ position @index }} </td>
+                            <td class="uppercase">{{ summoner.region }} </td>
                             <td><a href="/summoner/{{ summoner.region }}/{{ data.playerId }}">{{ summoner.name }}</a></td>
                             <td>{{ data.championPoints }}</td>
                         </tr>
