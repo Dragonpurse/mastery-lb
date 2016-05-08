@@ -4,10 +4,11 @@ import {ChampionMastery} from '../api/championMastery.js'
 
 export const updateChampionMasteries = function(region, summonerId){
     if(Meteor.isServer){
+
         const server = Meteor.settings.riot.apiserver;
         const key = Meteor.settings.riot.key;
 
-        HTTP.get('https://' + region.slug + '.' + server + '/championmastery/location/' + region.regionId + '/player/' + summonerId + '/champions', {
+       HTTP.get('https://' + region.slug + '.' + server + '/championmastery/location/' + region.regionId + '/player/' + summonerId + '/champions', {
             params: {
                 "api_key": key
             }

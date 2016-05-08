@@ -7,7 +7,9 @@ import {ChampionMastery} from '../imports/api/championMastery.js';
 setupBrowserPolicy(BrowserPolicy);
 
 Meteor.startup(() => {
+  console.log('LOADING CHAMPIONS');
   loadChampions();
+  console.log('LOADING REGIONS');
   loadRegions();
   //loadFixtures([{ foo: 'bar' }], myCollection);
 });

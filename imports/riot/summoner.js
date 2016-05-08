@@ -8,7 +8,7 @@ export const getSummonerByName = function(region, summonerName, next){
         const server = Meteor.settings.riot.apiserver;
         const key = Meteor.settings.riot.key;
         summonerName = encodeURI(summonerName);
-        HTTP.get('https://' + region.slug + '.' + server + '/api/lol/' + region.slug + '/v1.4/summoner/by-name/' + summonerName, {
+       HTTP.get('https://' + region.slug + '.' + server + '/api/lol/' + region.slug + '/v1.4/summoner/by-name/' + summonerName, {
             params: {
                 "api_key": key
             }
