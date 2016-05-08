@@ -91,7 +91,7 @@ export default function (Template) {
     },
     canRefreshStats(summoner){
 
-      if(!summoner.hasOwnProperty('statsRefreshedAt')){
+      if(!summoner || !summoner.hasOwnProperty('statsRefreshedAt')){
         return true;
       }else{
         var minutes = moment(new Date()).diff(moment(summoner.statsRefreshedAt), 'minutes');
