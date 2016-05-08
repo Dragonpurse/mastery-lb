@@ -133,6 +133,9 @@ ul.champions{
 }
 
 .front-header-logo {
+  position: relative;
+  z-index: 20;
+
   #front-logo {
     width: 65%;
     margin: 0 auto;
