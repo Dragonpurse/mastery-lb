@@ -133,9 +133,13 @@ ul.champions{
 }
 
 .front-header-logo {
-  margin-top: -50px;
   #front-logo {
     width: 65%;
     margin: 0 auto;
   }
+}
+
+.front.search-bar {
+  margin-top: -50px;
+  position: relative;
 }
