@@ -20,6 +20,7 @@ $border-color-3:  lighten($border-color-1,60%);
     top: 0;
     width: 85px;
     height: 100px;
+    transform: skew(10deg);
     -webkit-transform: skew(10deg);
     -moz-transform: skew(10deg);
     -o-transform: skew(10deg);
@@ -85,6 +86,7 @@ ul.champions{
   top: 0;
   width: 85px;
   height: 100px;
+  transform: skew(10deg);
   -webkit-transform: skew(10deg);
   -moz-transform: skew(10deg);
   -o-transform: skew(10deg);
@@ -110,6 +112,7 @@ ul.champions{
   top: -1px;
   width: 88px;
   height: 102px;
+  transform: skew(10deg);
   -webkit-transform: skew(10deg);
   -moz-transform: skew(10deg);
   -o-transform: skew(10deg);

@@ -52,10 +52,12 @@ table.summoner-info {
   }
 }
 
+.left {
+  float: left;
+}
+
 .summoner {
-  .left {
-    float: left;
-  }
+
 
   .summoner-details {
     padding-top: 7px;
@@ -69,4 +71,18 @@ table.summoner-info {
 #compare-block {
   width: 400px;
   float: right;
+}
+
+.header{
+  position: relative;
+}
+
+.refresh-btn {
+  float: right;
+  position: static;
+  padding-left: 10px;
+}
+
+.header-summoner {
+  padding-bottom: 30px;
 }
