@@ -38,7 +38,11 @@ export default function (Template) {
       Meteor.call('summoner.search', selectedRegion, summonerName, function (error, result) {
         console.log(result);
           if(error){
-            swal({   title: "Error",   text: "Summoner " + summonerName + " not found!",   type: "error",   confirmButtonText: "Close" });
+            if(error.reason.response.statusCode == 404){
+              swal({   title: "Error",   text: "Summoner " + summonerName + " not found!",   type: "error",   confirmButtonText: "Close" });
+            }else{
+              swal({   title: "Error",   text: "To many requests. Please try again later.",   type: "error",   confirmButtonText: "Close" });
+            }
           }else{
             window.location.href = '/summoner/' + result.region + '/' + result.id;
 

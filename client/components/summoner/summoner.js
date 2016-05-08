@@ -44,14 +44,28 @@ export default function (Template) {
       const summonerName = target.summonerName.value;
 
       Meteor.call('summoner.search', Session.get("selectedCompareRegion"), summonerName, function (error, result) {
-            if(error){
-              swal({   title: "Error",   text: "Summoner " + summonerName + " not found!",   type: "error",   confirmButtonText: "Close" });
-            }else{
-              if(result){
-                window.location.href = '/summoner/' + region + '/' + summonerId + '/compare/' + result.region + '/' + result.id;
-              }
-            }
+        if(error) {
+          if (error.reason.response.statusCode == 404) {
+            swal({
+              title: "Error",
+              text: "Summoner " + summonerName + " not found!",
+              type: "error",
+              confirmButtonText: "Close"
+            });
+          } else {
+            swal({
+              title: "Error",
+              text: "To many requests. Please try again later.",
+              type: "error",
+              confirmButtonText: "Close"
+            });
           }
+        }else{
+          if(result){
+            window.location.href = '/summoner/' + region + '/' + summonerId + '/compare/' + result.region + '/' + result.id;
+          }
+        }
+      }
       );
     }
   });

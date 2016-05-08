@@ -28,7 +28,7 @@ if(Meteor.isServer){
                     'name': {$regex: summonerName,  $options: 'i'}
                 });
             if (summoner) {
-                return summoner;
+                future.return( summoner );
             } else {
                 getSummonerByName(region, summonerName, function(error, summoner){
                     if ( error ) {
@@ -38,7 +38,13 @@ if(Meteor.isServer){
                     }
                 })
             }
-            return future.wait();
+            try {
+                return future.wait();
+            }
+            catch(err) {
+                // Replace this with whatever you want sent to the client.
+                throw new Meteor.Error("http-error", err);
+            }
         }
     });
 }
