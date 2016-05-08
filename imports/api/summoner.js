@@ -32,8 +32,7 @@ if(Meteor.isServer){
             } else {
                 getSummonerByName(region, summonerName, function(error, summoner){
                     if ( error ) {
-                        console.log(error);
-                        future.return( error );
+                        future.throw( error );
                     } else {
                         future.return( summoner );
                     }

@@ -45,7 +45,7 @@ export default function (Template) {
 
       Meteor.call('summoner.search', Session.get("selectedCompareRegion"), summonerName, function (error, result) {
             if(error){
-              console.log(error);
+              swal({   title: "Error",   text: "Summoner " + summonerName + " not found!",   type: "error",   confirmButtonText: "Close" });
             }else{
               if(result){
                 window.location.href = '/summoner/' + region + '/' + summonerId + '/compare/' + result.region + '/' + result.id;

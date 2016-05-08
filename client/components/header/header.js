@@ -36,12 +36,12 @@ export default function (Template) {
       const summonerName = target.summonerName.value;
 
       Meteor.call('summoner.search', selectedRegion, summonerName, function (error, result) {
+        console.log(result);
           if(error){
-            console.log(error);
+            swal({   title: "Error",   text: "Summoner " + summonerName + " not found!",   type: "error",   confirmButtonText: "Close" });
           }else{
-            if(result){
-              window.location.href = '/summoner/' + result.region + '/' + result.id;
-            }
+            window.location.href = '/summoner/' + result.region + '/' + result.id;
+
           }
         }
       );
