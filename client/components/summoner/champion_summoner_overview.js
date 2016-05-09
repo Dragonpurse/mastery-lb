@@ -14,5 +14,12 @@ export default function (Template) {
     calculateTotalExpLevel(championPointsSinceLastLevel, championPointsUntilNextLevel) {
       return championPointsSinceLastLevel + championPointsUntilNextLevel;
     },
+    canShowChampionMastery(champion){
+        let searchQuery = Session.get('championSearch');
+        if(searchQuery !== ''){
+            return champion.name.toLowerCase().indexOf(searchQuery) != -1;
+        }
+        return true;
+    }
   })
 }

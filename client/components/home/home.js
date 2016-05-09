@@ -6,9 +6,7 @@ export default function (Template) {
 
   Template.home.onCreated(function () {
     Session.set('championSearch', '');
-    Tracker.autorun(function () {
-      Meteor.subscribe("champions", Session.get('championSearch'));
-    });
+    Meteor.subscribe("champions");
   });
 
   Template.home.helpers({

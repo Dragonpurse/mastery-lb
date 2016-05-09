@@ -1,31 +1,33 @@
 <template name="champion_summoner_overview">
-  <tr onclick="window.document.location='/leaderboard/{{ data.championId }}?summoner={{ data.playerId }}&region={{ region }}'" style='cursor: pointer;'>
-    <td> <img src="{{ddragonUrl}}/cdn/6.9.1/img/champion/{{champion.key}}.png"/></td>
-    <td>{{ data.championLevel }}</td>
-    <td>
-    {{#if data.highestGrade}}
-      {{ data.highestGrade }}
-    {{/if}}
-    </td>
-    <td>
-    {{#if data.chestGranted }}
-      <img src="/images/chest-available.png" style="width:20px;height:20px;">
-    {{ else }}
-      <img src="/images/chest-unavailable.png" style="width:20px;height:20px;">
-    {{/if}}
+    {{#if canShowChampionMastery champion}}
+        <tr onclick="window.document.location='/leaderboard/{{ data.championId }}?summoner={{ data.playerId }}&region={{ region }}'" style='cursor: pointer;'>
+            <td> <img src="{{ddragonUrl}}/cdn/6.9.1/img/champion/{{champion.key}}.png"/></td>
+            <td>{{ data.championLevel }}</td>
+            <td>
+            {{#if data.highestGrade}}
+              {{ data.highestGrade }}
+            {{/if}}
+            </td>
+            <td>
+            {{#if data.chestGranted }}
+              <img src="/images/chest-available.png" style="width:20px;height:20px;">
+            {{ else }}
+              <img src="/images/chest-unavailable.png" style="width:20px;height:20px;">
+            {{/if}}
 
-    </td>
-    <td>
-      <div class="progress">
-        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ calculateProgress data.championLevel data.championPointsSinceLastLevel data.championPointsUntilNextLevel }}"
-        aria-valuemin="0" aria-valuemax="100" style="width:{{ calculateProgress data.championLevel data.championPointsSinceLastLevel data.championPointsUntilNextLevel }}%">
-          {{#if data.championPointsUntilNextLevel }}
-            Lv{{ data.championLevel }} {{ data.championPointsSinceLastLevel }}/{{ calculateTotalExpLevel data.championPointsSinceLastLevel data.championPointsUntilNextLevel }}
-          {{else}}
-            Total points: {{ data.championPoints }}
-          {{/if}}
-        </div>
-      </div>
-    </td>
-  </tr>
+            </td>
+            <td>
+              <div class="progress">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ calculateProgress data.championLevel data.championPointsSinceLastLevel data.championPointsUntilNextLevel }}"
+                aria-valuemin="0" aria-valuemax="100" style="width:{{ calculateProgress data.championLevel data.championPointsSinceLastLevel data.championPointsUntilNextLevel }}%">
+                  {{#if data.championPointsUntilNextLevel }}
+                    Lv{{ data.championLevel }} {{ data.championPointsSinceLastLevel }}/{{ calculateTotalExpLevel data.championPointsSinceLastLevel data.championPointsUntilNextLevel }}
+                  {{else}}
+                    Total points: {{ data.championPoints }}
+                  {{/if}}
+                </div>
+              </div>
+            </td>
+        </tr>
+    {{/if}}
 </template>

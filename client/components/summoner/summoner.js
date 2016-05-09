@@ -13,12 +13,10 @@ export default function (Template) {
     Meteor.subscribe('regions');
     //To load champion details
     Meteor.subscribe('summoners', summonerId);
-    Meteor.subscribe("champions", '');
+    Meteor.subscribe("champions");
     Session.set('championSearch', '');
     Session.set('chestGranted', false);
-    Tracker.autorun(function () {
-      masteryHandler = Meteor.subscribe('SummonerChampionMastery', region , summonerId, Session.get('championSearch'), Session.get('chestGranted'));
-    });
+    masteryHandler = Meteor.subscribe('SummonerChampionMastery', region , summonerId);
   });
 
   Template.summoner.events({
