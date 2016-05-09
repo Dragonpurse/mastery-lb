@@ -45,7 +45,7 @@ export default function (Template) {
             Meteor.subscribe('leaderBoardsCount', Session.get('selectedRegions'), championId);
             masteryHandler = Meteor.subscribe('ChampionLeaderBoards', Session.get('selectedRegions'), championId, Session.get('pageSize'), Session.get('page'));
         });
-        Meteor.subscribe('champions', '');
+        Meteor.subscribe('champions');
     });
 
     Template.leaderboard.helpers({

@@ -21,19 +21,19 @@ export default function (Template) {
         //To load champion details
         Meteor.subscribe('summoners', summonerId1);
         Meteor.subscribe('summoners', summonerId2);
-        Meteor.subscribe("champions", '');
+        Meteor.subscribe('champions');
         Session.set('championSearch', '');
-        Tracker.autorun(function () {
-            masteryHandler1 = Meteor.subscribe('SummonerChampionMastery', region1, summonerId1, Session.get('championSearch'), false);
-            masteryHandler2 = Meteor.subscribe('SummonerChampionMastery', region2 , summonerId2, Session.get('championSearch'), false);
-        });
+        Meteor.subscribe('SummonerChampionMastery', region1, summonerId1);
+        Meteor.subscribe('SummonerChampionMastery', region2 , summonerId2);
     });
     Template.compare.helpers({
        masteries(){
            return ChampionMastery.find({});
        },
         champions(){
-            return Champions.find({},{sort:{name: 1}});
+            return Champions.find({
+                'name': {$regex: Session.get('championSearch'),  $options: 'i'}
+            },{sort:{name: 1}});
         },
         hasChampion(){
             return ChampionMastery.find({
@@ -81,14 +81,9 @@ export default function (Template) {
         }
     });
 
-    Template.compare.onDestroyed(function(){
-        masteryHandler1.stop();
-        masteryHandler2.stop();
-    })
-
     Template.compare.events({
       'keyup #champion-search'(event){
         Session.set('championSearch', event.target.value);
-      },
+      }
     });
 }
