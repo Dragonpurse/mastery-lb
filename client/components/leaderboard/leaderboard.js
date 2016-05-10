@@ -42,8 +42,6 @@ export default function (Template) {
         Tracker.autorun(function () {
             Meteor.subscribe('leaderBoardsCount', Session.get('selectedRegions'), championId);
             masteryHandler = Meteor.subscribe('ChampionLeaderBoards', Session.get('selectedRegions'), championId, Session.get('pageSize'), Session.get('page'));
-            let listOfSummoners = ChampionMastery.find().map(function(championMastery) { return championMastery.data.playerId });
-            Meteor.subscribe('listOfSummoners', listOfSummoners);
         });
 
     });

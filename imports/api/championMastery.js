@@ -37,7 +37,7 @@ if (Meteor.isServer) {
         check(size, Number);
         check(offset, Number);
 
-        return ChampionMastery.find({
+        let championMasteries = ChampionMastery.find({
             "data.championId": championId,
             region: {$in: regions}
         }, {
@@ -45,6 +45,16 @@ if (Meteor.isServer) {
             limit: size,
             skip: size * offset
         });
+        var ids = championMasteries.map(function(championMastery){
+            return championMastery.data.playerId;
+        });
+        let users = Summoners.find({
+            id: {$in: ids}
+        });
+        return [
+            championMasteries,
+            users
+        ]
     });
 
     Meteor.publish("leaderBoardsCount", function (regions, championId) {
