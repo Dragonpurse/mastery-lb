@@ -3,3 +3,4 @@ settings-production.json
 settings.json
 node_modules
 *.tar.gz
+mup.json
