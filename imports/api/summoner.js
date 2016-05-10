@@ -8,8 +8,8 @@ if(Meteor.isServer){
         return Summoners.find();
     });
 
-    Meteor.publish('ListOfSummoners', function(summonerIds){
-       check(summonerIds, Object);
+    Meteor.publish('listOfSummoners', function(summonerIds){
+       check(summonerIds, Array);
         return Summoners.find({
             id: {$in: summonerIds}
         })
