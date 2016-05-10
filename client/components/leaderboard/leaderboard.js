@@ -39,13 +39,11 @@ export default function (Template) {
                 }
             });
         }
-        Meteor.subscribe('allSummoners');
-        Meteor.subscribe('regions');
         Tracker.autorun(function () {
             Meteor.subscribe('leaderBoardsCount', Session.get('selectedRegions'), championId);
             masteryHandler = Meteor.subscribe('ChampionLeaderBoards', Session.get('selectedRegions'), championId, Session.get('pageSize'), Session.get('page'));
         });
-        Meteor.subscribe('champions');
+        Meteor.subscribe('allSummoners');
     });
 
     Template.leaderboard.helpers({

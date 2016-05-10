@@ -10,10 +10,9 @@ export default function (Template) {
   Template.summoner.onCreated(function () {
     region = FlowRouter.getParam("region");
     summonerId = parseInt(FlowRouter.getParam("summonerId"));
-    Meteor.subscribe('regions');
     //To load champion details
     Meteor.subscribe('summoners', summonerId);
-    Meteor.subscribe("champions");
+
     Session.set('championSearch', '');
     Session.set('chestGranted', false);
     masteryHandler = Meteor.subscribe('SummonerChampionMastery', region , summonerId);
@@ -85,7 +84,8 @@ export default function (Template) {
     },
     summoner(){
       return Summoners.findOne({
-        id: summonerId
+        id: summonerId,
+        region: region
       });
     },
     regions() {

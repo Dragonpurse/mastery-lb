@@ -9,4 +9,26 @@ setupBrowserPolicy(BrowserPolicy);
 Meteor.startup(() => {
   loadChampions();
   loadRegions();
+
 });
+
+
+/*
+INDEXES
+ championMastery
+{
+ "data.playerId": 1,
+ region: 1
+ }
+{
+ "data.championId": 1,
+ region: 1,
+ "data.championPoints":-1
+ }
+
+ Summoners
+ {
+ region: 1,
+ 'name': 'text'
+ }
+ */

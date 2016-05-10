@@ -19,12 +19,8 @@ if (Meteor.isServer) {
         check(region, String);
         check(summonerId, Number);
 
-        let champions = Champions.find({});
-
-        var championIds = champions.map(function(p) { return p.id });
         let masteries = ChampionMastery.find({
             "data.playerId": summonerId,
-            'data.championId': {$in: championIds},
             region: region
         });
 
@@ -116,9 +112,6 @@ Meteor.methods({
                 updateChampionMasteries(regionObject,summonerId);
             }
         }
-
-
-        //
     }
 });
 

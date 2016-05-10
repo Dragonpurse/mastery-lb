@@ -17,11 +17,9 @@ export default function (Template) {
             id: summonerId2,
             region: region2
         });
-        Meteor.subscribe('regions');
         //To load champion details
         Meteor.subscribe('summoners', summonerId1);
         Meteor.subscribe('summoners', summonerId2);
-        Meteor.subscribe('champions');
         Session.set('championSearch', '');
         Meteor.subscribe('SummonerChampionMastery', region1, summonerId1);
         Meteor.subscribe('SummonerChampionMastery', region2 , summonerId2);

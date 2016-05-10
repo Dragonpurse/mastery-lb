@@ -2,11 +2,8 @@ import { Champions } from '../../../imports/api/champion.js';
 
 export default function (Template) {
 
-
-
   Template.home.onCreated(function () {
     Session.set('championSearch', '');
-    Meteor.subscribe("champions");
   });
 
   Template.home.helpers({
