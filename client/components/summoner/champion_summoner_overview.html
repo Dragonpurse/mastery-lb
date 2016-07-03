@@ -1,7 +1,7 @@
 <template name="champion_summoner_overview">
     {{#if canShowChampionMastery champion}}
         <tr onclick="window.document.location='/leaderboard/{{ data.championId }}?summoner={{ data.playerId }}&region={{ region }}'" style='cursor: pointer;'>
-            <td> <img src="{{ddragonUrl}}/cdn/6.9.1/img/champion/{{champion.key}}.png"/></td>
+            <td> <img src="{{ddragonUrl}}/cdn/{{ddragonVersion}}/img/champion/{{champion.key}}.png"/></td>
             <td>{{ data.championLevel }}</td>
             <td>
             {{#if data.highestGrade}}

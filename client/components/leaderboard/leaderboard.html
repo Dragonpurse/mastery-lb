@@ -4,7 +4,7 @@
 
     <div class="container background">
         <div class="content">
-            <h2><span class="leaderboard-champion-icon"><img src="{{ddragonUrl}}/cdn/6.9.1/img/champion/{{champion.key}}.png"/></span>Leaderboards for {{ champion.name }}</h2>
+            <h2><span class="leaderboard-champion-icon"><img src="{{ddragonUrl}}/cdn/{{ddragonVersion}}/img/champion/{{champion.key}}.png"/></span>Leaderboards for {{ champion.name }}</h2>
             {{#each regions}}
                 {{> regionLeaderboard }}
             {{/each}}
