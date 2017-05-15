@@ -1,9 +1,5 @@
 # League Mastery
 
-## Live website
-
-The live version of league mastery can be found at http://league-mastery.com/
-
 ## Features
 
 ###### Frontpage
